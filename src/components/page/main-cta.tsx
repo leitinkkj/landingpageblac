@@ -172,7 +172,7 @@ const MainCTA = () => {
                                     </div>
 
                                     {/* CTA Button */}
-                                    <Link href="https://www.ggcheckout.com/checkout/v2/rpU6SEztCV3PJcXZTcsm">
+                                    <Link href="https://go.use-dice.com/xHMb3hAk1loWHCMNN-c1_5QGAtXl3vq1">
                                         <motion.div
                                             animate={{ boxShadow: ['0 0 20px hsl(var(--primary) / 0.5)', '0 0 50px hsl(var(--primary) / 0.8)', '0 0 20px hsl(var(--primary) / 0.5)'] }}
                                             transition={{ duration: 1.5, repeat: Infinity }}
