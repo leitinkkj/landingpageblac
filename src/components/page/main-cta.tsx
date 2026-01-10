@@ -172,7 +172,19 @@ const MainCTA = () => {
                                     </div>
 
                                     {/* CTA Button */}
-                                    <Link href="https://go.use-dice.com/xHMb3hAk1loWHCMNN-c1_5QGAtXl3vq1">
+                                    <Link
+                                        href="https://go.use-dice.com/xHMb3hAk1loWHCMNN-c1_5QGAtXl3vq1"
+                                        onClick={() => {
+                                            if (typeof window !== 'undefined' && (window as any).fbq) {
+                                                (window as any).fbq('track', 'InitiateCheckout', {
+                                                    content_name: 'Black Shoppe - Acesso Completo',
+                                                    content_category: 'Produto Digital',
+                                                    value: 67.00,
+                                                    currency: 'BRL'
+                                                });
+                                            }
+                                        }}
+                                    >
                                         <motion.div
                                             animate={{ boxShadow: ['0 0 20px hsl(var(--primary) / 0.5)', '0 0 50px hsl(var(--primary) / 0.8)', '0 0 20px hsl(var(--primary) / 0.5)'] }}
                                             transition={{ duration: 1.5, repeat: Infinity }}
