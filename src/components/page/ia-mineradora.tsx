@@ -121,6 +121,54 @@ const IAMineradora = () => {
                         Nossa IA vasculha <span className="text-primary font-semibold">Paraguai</span> e os maiores
                         <span className="text-white font-semibold"> centros de comercialização</span> para encontrar os melhores preços de acordo com seu nicho
                     </p>
+
+                    {/* MarketIndex BR Technology Card */}
+                    <motion.div
+                        className="mt-8 max-w-3xl mx-auto"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.3 }}
+                    >
+                        <div className="glass-card p-6 border border-cyan-500/30 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 relative overflow-hidden">
+                            {/* Glow effect */}
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/20 rounded-full blur-3xl" />
+
+                            <div className="relative z-10 flex items-start gap-4">
+                                <motion.div
+                                    className="flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 flex items-center justify-center"
+                                    animate={{ scale: [1, 1.05, 1] }}
+                                    transition={{ duration: 3, repeat: Infinity }}
+                                >
+                                    <Bot className="w-7 h-7 text-cyan-400" />
+                                </motion.div>
+
+                                <div className="flex-1">
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <h3 className="font-bold text-white text-lg">Tecnologia MarketIndex BR</h3>
+                                        <span className="px-2 py-0.5 rounded-full bg-cyan-500/20 border border-cyan-500/30 text-cyan-400 text-xs font-bold">
+                                            EXCLUSIVO
+                                        </span>
+                                    </div>
+                                    <p className="text-muted-foreground text-sm leading-relaxed">
+                                        Nosso algoritmo <span className="text-cyan-400 font-semibold">cruza variações de preço abaixo da média nacional</span> em múltiplos centros de comercialização,
+                                        priorizando <span className="text-white font-semibold">ofertas atípicas</span> que surgem por excesso de estoque, giro rápido ou campanhas pontuais de fornecedores.
+                                    </p>
+                                    <div className="flex flex-wrap gap-2 mt-3">
+                                        <span className="px-2 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-muted-foreground">
+                                            📊 Análise em tempo real
+                                        </span>
+                                        <span className="px-2 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-muted-foreground">
+                                            🎯 Ofertas atípicas
+                                        </span>
+                                        <span className="px-2 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-muted-foreground">
+                                            ⚡ Alertas instantâneos
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </motion.div>
                 </motion.div>
 
                 {/* Search Interface */}
