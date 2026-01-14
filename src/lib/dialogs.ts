@@ -11,7 +11,7 @@ type DialogFinalAction = {
   description: string;
   buttonText: string;
   buttonHref: string;
-  videoUrl?: string; 
+  videoUrl?: string;
 };
 
 type Dialog = {
@@ -22,7 +22,7 @@ type Dialog = {
 export const dialogs: Record<string, Dialog> = {
   "compras-inteligentes": {
     steps: [
-       {
+      {
         speech: "Boas-vindas ao Marketplace Exclusivo! Sou seu guia na Black Shoppe e vou te mostrar um novo universo de compras.",
         image: "https://i.imgur.com/9pL2nHo.png",
         imageHint: "orange hoodie character waving"
@@ -102,7 +102,7 @@ export const dialogs: Record<string, Dialog> = {
   },
   "assistente-virtual": {
     steps: [
-       {
+      {
         speech: "Eu sou seu novo Assistente Virtual! Fui criado para tirar suas dúvidas e acelerar seus resultados aqui na Black Shoppe.",
         image: "https://i.imgur.com/9pL2nHo.png",
         imageHint: "orange hoodie character saluting"
@@ -112,7 +112,7 @@ export const dialogs: Record<string, Dialog> = {
         image: "https://i.imgur.com/bLL7HEb.png",
         imageHint: "orange hoodie character explaining"
       },
-       {
+      {
         speech: "Estou aqui para ser seu braço direito e garantir que sua experiência seja a melhor possível. Conte comigo!",
         image: "https://i.imgur.com/hi6L79z.png",
         imageHint: "orange hoodie character celebrating"
@@ -123,12 +123,12 @@ export const dialogs: Record<string, Dialog> = {
       title: "Compre o acesso!",
       description: "Adquira o acesso vitalício e comece a usar o assistente virtual agora mesmo para otimizar suas buscas.",
       buttonText: "QUERO ACESSO VITALÍCIO",
-      buttonHref: "https://www.ggcheckout.com/checkout/v2/rpU6SEztCV3PJcXZTcsm",
+      buttonHref: "https://www.ggcheckout.com/checkout/v4/rpU6SEztCV3PJcXZTcsm",
     }
   },
   "buscador-promocoes": {
     steps: [
-       {
+      {
         speech: "Você já imaginou encontrar promoções secretas que ninguém mais vê? Com nosso Buscador, isso é possível!",
         image: "https://i.imgur.com/9pL2nHo.png",
         imageHint: "orange hoodie character saluting"
@@ -144,12 +144,12 @@ export const dialogs: Record<string, Dialog> = {
       title: "Encontre as melhores ofertas.",
       description: "Compre o acesso vitalício e use nosso buscador para encontrar preços que a concorrência nem sonha em ter.",
       buttonText: "QUERO ACESSO VITALÍCIO",
-      buttonHref: "https://www.ggcheckout.com/checkout/v2/rpU6SEztCV3PJcXZTcsm",
+      buttonHref: "https://www.ggcheckout.com/checkout/v4/rpU6SEztCV3PJcXZTcsm",
     }
   },
-   "metodo-6": {
+  "metodo-6": {
     steps: [
-       {
+      {
         speech: "Chegou a hora de virar o jogo! Com o Método 6, nossa estratégia exclusiva, você vai aprender a se tornar um fornecedor de sucesso.",
         image: "https://i.imgur.com/9pL2nHo.png",
         imageHint: "orange hoodie character saluting"
@@ -165,12 +165,12 @@ export const dialogs: Record<string, Dialog> = {
       title: "Torne-se um fornecedor.",
       description: "Garanta seu acesso e comece hoje mesmo a trilhar o caminho para se tornar um grande fornecedor no seu nicho.",
       buttonText: "QUERO ACESSO VITALÍCIO",
-      buttonHref: "https://www.ggcheckout.com/checkout/v2/rpU6SEztCV3PJcXZTcsm",
+      buttonHref: "https://www.ggcheckout.com/checkout/v4/rpU6SEztCV3PJcXZTcsm",
     }
   },
-   "aulas-black": {
+  "aulas-black": {
     steps: [
-       {
+      {
         speech: "Conhecimento é poder! Nas Aulas Black, você terá acesso a treinamentos de vendas e branding que vão direto ao ponto.",
         image: "https://i.imgur.com/bLL7HEb.png",
         imageHint: "orange hoodie character saluting"
@@ -191,7 +191,7 @@ export const dialogs: Record<string, Dialog> = {
   },
   "networking": {
     steps: [
-       {
+      {
         speech: "Na Black Shoppe, você nunca está sozinho. Nossos grupos de networking conectam você com milhares de empreendedores que estão no campo de batalha, vendendo de verdade.",
         image: "https://i.imgur.com/9pL2nHo.png",
         imageHint: "orange hoodie character saluting"

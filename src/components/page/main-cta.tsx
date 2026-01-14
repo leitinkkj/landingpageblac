@@ -301,7 +301,7 @@ const MainCTA = () => {
 
                                     {/* CTA Button */}
                                     <Link
-                                        href="https://go.use-dice.com/xHMb3hAk1loWHCMNN-c1_5QGAtXl3vq1"
+                                        href="https://www.ggcheckout.com/checkout/v4/rpU6SEztCV3PJcXZTcsm"
                                         onClick={() => {
                                             if (typeof window !== 'undefined' && (window as any).fbq) {
                                                 (window as any).fbq('track', 'InitiateCheckout', {
