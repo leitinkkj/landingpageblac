@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===== PERFORMANCE CRITICAL CSS ===== */
+/* Carregado primeiro para evitar FOUC */
+
 @layer base {
   :root {
     --background: 0 0% 4%;
@@ -28,24 +31,103 @@
     --input: 0 0% 14.9%;
     --ring: 26 100% 50%;
     --radius: 0.5rem;
+
+    /* Font variables para consistência */
+    --font-headline: 'Anton', Impact, 'Arial Black', sans-serif;
+    --font-body: var(--font-poppins), 'Segoe UI', system-ui, sans-serif;
   }
 }
 
 @layer base {
 
+  /* Performance: scroll otimizado */
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
   html,
   body {
     overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
   }
 
   * {
     @apply border-border;
+    /* Evitar layout shifts */
+    box-sizing: border-box;
   }
 
   body {
     @apply bg-background text-foreground;
     background-color: hsl(var(--background));
     overscroll-behavior-y: contain;
+    /* Performance: text rendering otimizado */
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Font family com fallback */
+    font-family: var(--font-body);
+  }
+
+  /* Performance: lazy render para seções fora da viewport */
+  section:not(#hero) {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 800px;
+  }
+
+  /* Performance: imagens com lazy loading nativo */
+  img {
+    content-visibility: auto;
+    /* Prevenir layout shift */
+    height: auto;
+    max-width: 100%;
+  }
+
+  /* Performance: GPU acceleration para elementos animados */
+  .glass-card,
+  [class*="animate-"],
+  [class*="hover:"] {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  /* Performance: will-change apenas quando necessário */
+  .will-change-transform {
+    will-change: transform;
+  }
+
+  .will-change-opacity {
+    will-change: opacity;
+  }
+
+  /* Performance: reduzir animações para usuários que preferem */
+  @media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+
+    /* Desabilitar efeitos 3D que são pesados */
+    canvas {
+      display: none !important;
+    }
+  }
+
+  /* Performance: otimizar para dispositivos de baixa potência */
+  @media (prefers-reduced-motion: no-preference) {
+
+    /* Usar GPU-accelerated transforms */
+    .gpu-accelerated {
+      transform: translate3d(0, 0, 0);
+      will-change: transform, opacity;
+    }
   }
 }
 

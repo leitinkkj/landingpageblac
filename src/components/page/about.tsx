@@ -13,7 +13,7 @@ const About = () => {
         <motion.div
           className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/10 to-transparent"
           animate={{ opacity: [0.3, 0.6, 0.3] }}
-          transition={{ duration: 4, repeat: Infinity }}
+          transition={{ duration: 4, repeat: 9999 }}
         />
       </div>
 
@@ -46,12 +46,12 @@ const About = () => {
               <motion.div
                 className="w-12 h-[2px] bg-primary"
                 animate={{ scaleX: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 2, repeat: Infinity }}
+                transition={{ duration: 2, repeat: 9999 }}
               />
               <motion.span
                 className="text-primary text-sm font-bold tracking-widest uppercase"
                 animate={{ opacity: [0.7, 1, 0.7] }}
-                transition={{ duration: 2, repeat: Infinity }}
+                transition={{ duration: 2, repeat: 9999 }}
               >
                 POR QUE ENTRAR
               </motion.span>
@@ -65,12 +65,12 @@ const About = () => {
                 className="text-gradient-animate inline-block"
                 animate={{
                   textShadow: [
-                    '0 0 20px hsl(var(--primary) / 0.5)',
-                    '0 0 40px hsl(var(--primary) / 0.8)',
-                    '0 0 20px hsl(var(--primary) / 0.5)'
+                    '0 0 20px rgba(249, 115, 22, 0.5)',
+                    '0 0 40px rgba(249, 115, 22, 0.8)',
+                    '0 0 20px rgba(249, 115, 22, 0.5)'
                   ]
                 }}
-                transition={{ duration: 2, repeat: Infinity }}
+                transition={{ duration: 2, repeat: 9999 }}
               >Campo de Batalha</motion.span>
               <br />
               <span className="text-white">do Comércio Real</span>
@@ -81,7 +81,7 @@ const About = () => {
               Enquanto os outros vendem <span className="text-white">PDFs e promessas</span>, aqui você entra na trincheira com acesso real, contatos verdadeiros e <motion.span
                 className="text-primary font-semibold"
                 animate={{ opacity: [0.7, 1, 0.7] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
+                transition={{ duration: 1.5, repeat: 9999 }}
               >lucro imediato</motion.span>.
             </p>
 
@@ -89,15 +89,15 @@ const About = () => {
             <motion.div
               className="flex items-center gap-4 text-primary"
               animate={{ x: [0, 10, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
+              transition={{ duration: 2, repeat: 9999 }}
             >
               <motion.span
                 className="text-2xl"
                 animate={{ scale: [1, 1.2, 1], rotate: [0, 10, -10, 0] }}
-                transition={{ duration: 1, repeat: Infinity }}
+                transition={{ duration: 1, repeat: 9999 }}
               >💣</motion.span>
               <span className="font-semibold">Assista a demonstração abaixo</span>
-              <motion.div animate={{ y: [0, 5, 0] }} transition={{ duration: 1, repeat: Infinity }}>
+              <motion.div animate={{ y: [0, 5, 0] }} transition={{ duration: 1, repeat: 9999 }}>
                 <ArrowDown className="w-5 h-5" />
               </motion.div>
             </motion.div>
@@ -120,10 +120,10 @@ const About = () => {
                   rotate: [-6, -4, -6],
                   y: [0, -5, 0]
                 }}
-                transition={{ duration: 4, repeat: Infinity }}
+                transition={{ duration: 4, repeat: 9999 }}
                 whileHover={{ rotate: 0, scale: 1.05, zIndex: 30 }}
               >
-                <motion.div animate={{ rotate: [0, 360] }} transition={{ duration: 8, repeat: Infinity, ease: "linear" }}>
+                <motion.div animate={{ rotate: [0, 360] }} transition={{ duration: 8, repeat: 9999, ease: "linear" }}>
                   <Crown className="w-10 h-10 text-primary mb-4" />
                 </motion.div>
                 <h3 className="text-xl font-bold text-white mb-2">Acesso Exclusivo</h3>
@@ -137,10 +137,10 @@ const About = () => {
                   rotate: [3, 5, 3],
                   y: [0, -8, 0]
                 }}
-                transition={{ duration: 5, repeat: Infinity, delay: 0.5 }}
+                transition={{ duration: 5, repeat: 9999, delay: 0.5 }}
                 whileHover={{ rotate: 0, scale: 1.05, zIndex: 30 }}
               >
-                <motion.div animate={{ scale: [1, 1.1, 1] }} transition={{ duration: 2, repeat: Infinity }}>
+                <motion.div animate={{ scale: [1, 1.1, 1] }} transition={{ duration: 2, repeat: 9999 }}>
                   <Target className="w-10 h-10 text-primary mb-4" />
                 </motion.div>
                 <h3 className="text-xl font-bold text-white mb-2">Contatos Reais</h3>
@@ -154,7 +154,7 @@ const About = () => {
                   rotate: [-2, 0, -2],
                   y: [0, -6, 0]
                 }}
-                transition={{ duration: 4.5, repeat: Infinity, delay: 1 }}
+                transition={{ duration: 4.5, repeat: 9999, delay: 1 }}
                 whileHover={{ rotate: 0, scale: 1.05, zIndex: 30 }}
               >
                 <motion.div
@@ -162,7 +162,7 @@ const About = () => {
                     scale: [1, 1.2, 1],
                     rotate: [0, 5, -5, 0]
                   }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
+                  transition={{ duration: 1.5, repeat: 9999 }}
                 >
                   <Flame className="w-10 h-10 text-primary mb-4" />
                 </motion.div>
@@ -174,7 +174,7 @@ const About = () => {
               <motion.div
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary/20 rounded-full blur-3xl"
                 animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
-                transition={{ duration: 4, repeat: Infinity }}
+                transition={{ duration: 4, repeat: 9999 }}
               />
             </div>
           </motion.div>

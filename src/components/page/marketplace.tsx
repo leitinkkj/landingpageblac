@@ -36,7 +36,7 @@ const Marketplace = () => {
             <motion.div
                 className="absolute top-1/3 left-1/4 w-96 h-96 bg-green-500/10 rounded-full blur-3xl"
                 animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.4, 0.2] }}
-                transition={{ duration: 5, repeat: Infinity }}
+                transition={{ duration: 5, repeat: 9999 }}
             />
 
             <div className="container mx-auto px-4 relative z-10">
@@ -50,9 +50,9 @@ const Marketplace = () => {
                     <motion.div
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/30 text-green-400 text-sm font-bold mb-6"
                         animate={{ boxShadow: ['0 0 0px rgba(34,197,94,0)', '0 0 20px rgba(34,197,94,0.5)', '0 0 0px rgba(34,197,94,0)'] }}
-                        transition={{ duration: 2, repeat: Infinity }}
+                        transition={{ duration: 2, repeat: 9999 }}
                     >
-                        <motion.span animate={{ rotate: [0, 360] }} transition={{ duration: 3, repeat: Infinity, ease: "linear" }}>
+                        <motion.span animate={{ rotate: [0, 360] }} transition={{ duration: 3, repeat: 9999, ease: "linear" }}>
                             <Clock className="w-4 h-4" />
                         </motion.span>
                         EM TEMPO REAL
@@ -62,7 +62,7 @@ const Marketplace = () => {
                         <motion.span
                             className="bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent"
                             animate={{ textShadow: ['0 0 20px rgba(34,197,94,0.5)', '0 0 40px rgba(34,197,94,0.8)', '0 0 20px rgba(34,197,94,0.5)'] }}
-                            transition={{ duration: 2, repeat: Infinity }}
+                            transition={{ duration: 2, repeat: 9999 }}
                         >Marketplace</motion.span>
                         <span className="text-white"> Ao Vivo</span>
                     </h2>
@@ -97,12 +97,12 @@ const Marketplace = () => {
                                     viewport={{ once: true }}
                                     transition={{ delay: index * 0.1 }}
                                     whileHover={{ y: -5, scale: 1.02 }}
-                                    animate={{ borderColor: ['hsl(var(--primary) / 0.1)', 'rgba(34,197,94,0.3)', 'hsl(var(--primary) / 0.1)'] }}
+                                    animate={{ borderColor: ['rgba(249, 115, 22, 0.1)', 'rgba(34,197,94,0.3)', 'rgba(249, 115, 22, 0.1)'] }}
                                 >
                                     <motion.span
                                         className="text-4xl mb-3 block"
                                         animate={{ scale: [1, 1.1, 1], rotate: [0, 5, -5, 0] }}
-                                        transition={{ duration: 3, repeat: Infinity, delay: index * 0.2 }}
+                                        transition={{ duration: 3, repeat: 9999, delay: index * 0.2 }}
                                     >
                                         {location.icon}
                                     </motion.span>
@@ -125,7 +125,7 @@ const Marketplace = () => {
                                 <motion.span
                                     className="w-2 h-2 bg-green-400 rounded-full"
                                     animate={{ scale: [1, 1.5, 1], opacity: [1, 0.5, 1] }}
-                                    transition={{ duration: 1, repeat: Infinity }}
+                                    transition={{ duration: 1, repeat: 9999 }}
                                 />
                                 Ofertas Surgindo Agora
                             </h3>
@@ -134,7 +134,7 @@ const Marketplace = () => {
                         <motion.div
                             className="glass-card p-5 relative overflow-hidden"
                             animate={{ borderColor: ['rgba(34,197,94,0.2)', 'rgba(34,197,94,0.5)', 'rgba(34,197,94,0.2)'] }}
-                            transition={{ duration: 4, repeat: Infinity }}
+                            transition={{ duration: 4, repeat: 9999 }}
                         >
                             <ScanLine />
 
@@ -153,7 +153,7 @@ const Marketplace = () => {
                                             <motion.div
                                                 className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500/20 to-emerald-500/20 border border-green-500/30 flex items-center justify-center"
                                                 animate={{ rotate: [0, 5, -5, 0] }}
-                                                transition={{ duration: 3, repeat: Infinity, delay: index * 0.2 }}
+                                                transition={{ duration: 3, repeat: 9999, delay: index * 0.2 }}
                                             >
                                                 <ShoppingBag className="w-6 h-6 text-green-400" />
                                             </motion.div>
@@ -166,7 +166,7 @@ const Marketplace = () => {
                                             <motion.span
                                                 className="text-lg font-black text-green-400"
                                                 animate={{ scale: [1, 1.05, 1] }}
-                                                transition={{ duration: 2, repeat: Infinity }}
+                                                transition={{ duration: 2, repeat: 9999 }}
                                             >{product.price}</motion.span>
                                             <span className="block text-xs text-green-400/70">{product.discount}</span>
                                         </div>
@@ -177,7 +177,7 @@ const Marketplace = () => {
                                 <motion.div
                                     className="text-center py-3 text-muted-foreground text-sm"
                                     animate={{ opacity: [0.5, 1, 0.5] }}
-                                    transition={{ duration: 2, repeat: Infinity }}
+                                    transition={{ duration: 2, repeat: 9999 }}
                                 >
                                     +127 ofertas surgindo agora...
                                 </motion.div>
@@ -187,7 +187,7 @@ const Marketplace = () => {
                             <motion.div
                                 className="absolute -bottom-10 -right-10 w-40 h-40 bg-green-500/20 rounded-full blur-3xl"
                                 animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.5, 0.3] }}
-                                transition={{ duration: 4, repeat: Infinity }}
+                                transition={{ duration: 4, repeat: 9999 }}
                             />
                         </motion.div>
                     </motion.div>

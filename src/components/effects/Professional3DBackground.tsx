@@ -298,7 +298,7 @@ const Professional3DBackground = () => {
                     <motion.div
                         className="w-12 h-12 border-2 border-primary border-t-transparent rounded-full"
                         animate={{ rotate: 360 }}
-                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                        transition={{ duration: 1, repeat: 9999, ease: "linear" }}
                     />
                 </motion.div>
             )}

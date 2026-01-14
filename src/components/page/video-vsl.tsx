@@ -76,7 +76,7 @@ const VideoVSL = () => {
             <motion.div
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-primary/10 rounded-full blur-3xl"
                 animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.4, 0.2] }}
-                transition={{ duration: 6, repeat: Infinity }}
+                transition={{ duration: 6, repeat: 9999 }}
             />
 
             <div className="container mx-auto px-4 relative z-10">
@@ -89,10 +89,10 @@ const VideoVSL = () => {
                 >
                     <motion.div
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 text-primary text-sm font-bold mb-6"
-                        animate={{ boxShadow: ['0 0 0px hsl(var(--primary) / 0)', '0 0 20px hsl(var(--primary) / 0.5)', '0 0 0px hsl(var(--primary) / 0)'] }}
-                        transition={{ duration: 2, repeat: Infinity }}
+                        animate={{ boxShadow: ['0 0 0px rgba(249, 115, 22, 0)', '0 0 20px rgba(249, 115, 22, 0.5)', '0 0 0px rgba(249, 115, 22, 0)'] }}
+                        transition={{ duration: 2, repeat: 9999 }}
                     >
-                        <motion.span animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 1, repeat: Infinity }}>
+                        <motion.span animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 1, repeat: 9999 }}>
                             <Play className="w-4 h-4 fill-primary" />
                         </motion.span>
                         ASSISTA AGORA
@@ -102,8 +102,8 @@ const VideoVSL = () => {
                         <span className="text-white">Veja o </span>
                         <motion.span
                             className="text-gradient-animate"
-                            animate={{ textShadow: ['0 0 20px hsl(var(--primary) / 0.5)', '0 0 40px hsl(var(--primary) / 0.8)', '0 0 20px hsl(var(--primary) / 0.5)'] }}
-                            transition={{ duration: 2, repeat: Infinity }}
+                            animate={{ textShadow: ['0 0 20px rgba(249, 115, 22, 0.5)', '0 0 40px rgba(249, 115, 22, 0.8)', '0 0 20px rgba(249, 115, 22, 0.5)'] }}
+                            transition={{ duration: 2, repeat: 9999 }}
                         >Painel</motion.span>
                         <span className="text-white"> Por Dentro</span>
                     </h2>
@@ -132,21 +132,21 @@ const VideoVSL = () => {
                             animate={{
                                 backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
                             }}
-                            transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                            transition={{ duration: 4, repeat: 9999, ease: "linear" }}
                         />
 
                         {/* Inner glow */}
                         <motion.div
                             className="absolute -inset-4 md:-inset-6 rounded-3xl bg-primary/20 blur-xl"
                             animate={{ opacity: [0.3, 0.6, 0.3] }}
-                            transition={{ duration: 3, repeat: Infinity }}
+                            transition={{ duration: 3, repeat: 9999 }}
                         />
 
                         {/* Video frame with corners */}
                         <motion.div
                             className="relative glass-card overflow-hidden"
-                            animate={{ borderColor: ['hsl(var(--primary) / 0.3)', 'hsl(var(--primary) / 0.8)', 'hsl(var(--primary) / 0.3)'] }}
-                            transition={{ duration: 4, repeat: Infinity }}
+                            animate={{ borderColor: ['rgba(249, 115, 22, 0.3)', 'rgba(249, 115, 22, 0.8)', 'rgba(249, 115, 22, 0.3)'] }}
+                            transition={{ duration: 4, repeat: 9999 }}
                         >
                             {/* Corner decorations */}
                             {['top-0 left-0', 'top-0 right-0 rotate-90', 'bottom-0 right-0 rotate-180', 'bottom-0 left-0 -rotate-90'].map((position, index) => (
@@ -154,7 +154,7 @@ const VideoVSL = () => {
                                     key={index}
                                     className={`absolute ${position} w-8 h-8 z-20 pointer-events-none`}
                                     animate={{ opacity: [0.5, 1, 0.5] }}
-                                    transition={{ duration: 2, repeat: Infinity, delay: index * 0.25 }}
+                                    transition={{ duration: 2, repeat: 9999, delay: index * 0.25 }}
                                 >
                                     <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-transparent" />
                                     <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-primary to-transparent" />
@@ -168,11 +168,11 @@ const VideoVSL = () => {
                                 <motion.div
                                     className="absolute left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary/50 to-transparent"
                                     animate={{ top: ['-5%', '105%'] }}
-                                    transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                                    transition={{ duration: 4, repeat: 9999, ease: "linear" }}
                                 />
                             </motion.div>
 
-                            {/* Video player */}
+                            {/* Video player - lazy loading para performance */}
                             <div className="relative aspect-video bg-black/50">
                                 <video
                                     className="w-full h-full object-cover"
@@ -181,7 +181,8 @@ const VideoVSL = () => {
                                     muted
                                     loop
                                     playsInline
-                                    poster=""
+                                    preload="none"
+                                    poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1920' height='1080' viewBox='0 0 1920 1080'%3E%3Crect fill='%23111' width='1920' height='1080'/%3E%3C/svg%3E"
                                 >
                                     <source src="https://i.imgur.com/NuhwhfU.mp4" type="video/mp4" />
                                     Seu navegador não suporta vídeos HTML5.
@@ -204,8 +205,8 @@ const VideoVSL = () => {
                 >
                     <Link href="#price-section">
                         <motion.div
-                            animate={{ boxShadow: ['0 0 20px hsl(var(--primary) / 0.5)', '0 0 40px hsl(var(--primary) / 0.8)', '0 0 20px hsl(var(--primary) / 0.5)'] }}
-                            transition={{ duration: 2, repeat: Infinity }}
+                            animate={{ boxShadow: ['0 0 20px rgba(249, 115, 22, 0.5)', '0 0 40px rgba(249, 115, 22, 0.8)', '0 0 20px rgba(249, 115, 22, 0.5)'] }}
+                            transition={{ duration: 2, repeat: 9999 }}
                             className="inline-block rounded-xl"
                         >
                             <Button size="lg" className="btn-3d font-bold text-lg px-10 py-7 rounded-xl bg-gradient-to-r from-primary via-red-500 to-orange-500 group">
@@ -213,7 +214,7 @@ const VideoVSL = () => {
                                 <motion.span
                                     className="ml-2"
                                     animate={{ x: [0, 5, 0] }}
-                                    transition={{ duration: 1.5, repeat: Infinity }}
+                                    transition={{ duration: 1.5, repeat: 9999 }}
                                 >
                                     →
                                 </motion.span>
@@ -225,7 +226,7 @@ const VideoVSL = () => {
                     <motion.div
                         className="mt-6 inline-flex items-center gap-2 text-primary font-semibold"
                         animate={{ opacity: [0.7, 1, 0.7] }}
-                        transition={{ duration: 2, repeat: Infinity }}
+                        transition={{ duration: 2, repeat: 9999 }}
                     >
                         <Sparkles className="w-5 h-5" />
                         +3.000 lojistas já transformaram seus negócios

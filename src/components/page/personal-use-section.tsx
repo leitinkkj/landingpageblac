@@ -18,14 +18,14 @@ const PersonalUseSection = () => {
       <motion.div
         className="absolute top-20 left-10 opacity-20"
         animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        transition={{ duration: 6, repeat: 9999, ease: "easeInOut" }}
       >
         <ShoppingBag className="w-20 h-20 text-primary" />
       </motion.div>
       <motion.div
         className="absolute bottom-20 right-10 opacity-20"
         animate={{ y: [0, 20, 0], rotate: [0, -5, 0] }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        transition={{ duration: 5, repeat: 9999, ease: "easeInOut", delay: 1 }}
       >
         <Tag className="w-16 h-16 text-primary" />
       </motion.div>
@@ -79,7 +79,7 @@ const PersonalUseSection = () => {
                   Ver Preços de Demonstração
                   <motion.span
                     animate={{ x: [0, 5, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
+                    transition={{ duration: 1.5, repeat: 9999 }}
                   >
                     →
                   </motion.span>

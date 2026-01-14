@@ -1,40 +1,109 @@
+'use client';
 
+import dynamic from 'next/dynamic';
+import { Suspense } from 'react';
+
+// Componentes críticos - carregados imediatamente (above the fold)
 import Hero from '@/components/page/hero';
 import VideoVSL from '@/components/page/video-vsl';
-import IAMineradora from '@/components/page/ia-mineradora';
-import IANegocios from '@/components/page/ia-negocios';
-import Marketplace from '@/components/page/marketplace';
-import GruposNetworking from '@/components/page/grupos-networking';
-import AulasBlack from '@/components/page/aulas-black';
-import Fornecedores from '@/components/page/fornecedores';
-import Fronteireiros from '@/components/page/fronteireiros';
-import Confianca from '@/components/page/confianca';
-import Feedback from '@/components/page/feedback';
-import MainCTA from '@/components/page/main-cta';
-import Footer from '@/components/page/footer';
-import OrangeParticlesBackground from '@/components/effects/OrangeParticlesBackground';
+
+// Background - carregado dinamicamente para não bloquear LCP
+const OrangeParticlesBackground = dynamic(
+  () => import('@/components/effects/OrangeParticlesBackground'),
+  { ssr: false }
+);
+
+// Componentes não-críticos - lazy loaded para melhor performance
+const IAMineradora = dynamic(() => import('@/components/page/ia-mineradora'), {
+  loading: () => <div className="min-h-[400px]" />,
+});
+
+const IANegocios = dynamic(() => import('@/components/page/ia-negocios'), {
+  loading: () => <div className="min-h-[400px]" />,
+});
+
+const Marketplace = dynamic(() => import('@/components/page/marketplace'), {
+  loading: () => <div className="min-h-[400px]" />,
+});
+
+const NetworkingSection = dynamic(() => import('@/components/page/networking-section'), {
+  loading: () => <div className="min-h-[400px]" />,
+});
+
+const AulasBlack = dynamic(() => import('@/components/page/aulas-black'), {
+  loading: () => <div className="min-h-[400px]" />,
+});
+
+const Fornecedores = dynamic(() => import('@/components/page/fornecedores'), {
+  loading: () => <div className="min-h-[400px]" />,
+});
+
+const Fronteireiros = dynamic(() => import('@/components/page/fronteireiros'), {
+  loading: () => <div className="min-h-[400px]" />,
+});
+
+const Confianca = dynamic(() => import('@/components/page/confianca'), {
+  loading: () => <div className="min-h-[400px]" />,
+});
+
+const Feedback = dynamic(() => import('@/components/page/feedback'), {
+  loading: () => <div className="min-h-[400px]" />,
+});
+
+const MainCTA = dynamic(() => import('@/components/page/main-cta'), {
+  loading: () => <div className="min-h-[400px]" />,
+});
+
+const Footer = dynamic(() => import('@/components/page/footer'), {
+  loading: () => <div className="min-h-[200px]" />,
+});
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen relative">
-      {/* Clean Orange Particles Background - No 3D Icons */}
+      {/* Clean Orange Particles Background - SSR disabled for performance */}
       <OrangeParticlesBackground />
 
       <main className="flex-1 relative z-10">
+        {/* Critical above-the-fold content */}
         <Hero />
         <VideoVSL />
-        <IAMineradora />
-        <IANegocios />
-        <Marketplace />
-        <GruposNetworking />
-        <AulasBlack />
-        <Fornecedores />
-        <Fronteireiros />
-        <Confianca />
-        <Feedback />
-        <MainCTA />
+
+        {/* Lazy-loaded sections */}
+        <Suspense fallback={<div className="min-h-[400px]" />}>
+          <IAMineradora />
+        </Suspense>
+        <Suspense fallback={<div className="min-h-[400px]" />}>
+          <IANegocios />
+        </Suspense>
+        <Suspense fallback={<div className="min-h-[400px]" />}>
+          <Marketplace />
+        </Suspense>
+        <Suspense fallback={<div className="min-h-[400px]" />}>
+          <NetworkingSection />
+        </Suspense>
+        <Suspense fallback={<div className="min-h-[400px]" />}>
+          <AulasBlack />
+        </Suspense>
+        <Suspense fallback={<div className="min-h-[400px]" />}>
+          <Fornecedores />
+        </Suspense>
+        <Suspense fallback={<div className="min-h-[400px]" />}>
+          <Fronteireiros />
+        </Suspense>
+        <Suspense fallback={<div className="min-h-[400px]" />}>
+          <Confianca />
+        </Suspense>
+        <Suspense fallback={<div className="min-h-[400px]" />}>
+          <Feedback />
+        </Suspense>
+        <Suspense fallback={<div className="min-h-[400px]" />}>
+          <MainCTA />
+        </Suspense>
       </main>
-      <Footer />
+      <Suspense fallback={<div className="min-h-[200px]" />}>
+        <Footer />
+      </Suspense>
     </div>
   );
 }

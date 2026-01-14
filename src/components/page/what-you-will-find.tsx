@@ -95,7 +95,7 @@ const InfiniteCarousel = ({ items, direction = "left", speed = 30 }: { items: ty
                 }}
                 transition={{
                     x: {
-                        repeat: Infinity,
+                        repeat: 9999,
                         repeatType: "loop",
                         duration: speed,
                         ease: "linear",

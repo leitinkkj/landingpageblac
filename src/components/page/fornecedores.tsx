@@ -115,7 +115,7 @@ const InfiniteCarousel = ({ items, direction = 'left', speed = 30 }: {
                 transition={{
                     x: {
                         duration: speed,
-                        repeat: Infinity,
+                        repeat: 9999,
                         ease: 'linear',
                     }
                 }}
@@ -149,12 +149,12 @@ const Fornecedores = () => {
             <motion.div
                 className="absolute top-1/3 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
                 animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.4, 0.2] }}
-                transition={{ duration: 5, repeat: Infinity }}
+                transition={{ duration: 5, repeat: 9999 }}
             />
             <motion.div
                 className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl"
                 animate={{ scale: [1.2, 1, 1.2], opacity: [0.2, 0.3, 0.2] }}
-                transition={{ duration: 6, repeat: Infinity, delay: 2 }}
+                transition={{ duration: 6, repeat: 9999, delay: 2 }}
             />
 
             <div className="container mx-auto px-4 relative z-10">
@@ -168,12 +168,12 @@ const Fornecedores = () => {
                     <motion.div
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 text-primary text-sm font-bold mb-6"
                         animate={{
-                            boxShadow: ['0 0 0px hsl(var(--primary) / 0)', '0 0 20px hsl(var(--primary) / 0.5)', '0 0 0px hsl(var(--primary) / 0)'],
-                            borderColor: ['hsl(var(--primary) / 0.3)', 'hsl(var(--primary))', 'hsl(var(--primary) / 0.3)']
+                            boxShadow: ['0 0 0px rgba(249, 115, 22, 0)', '0 0 20px rgba(249, 115, 22, 0.5)', '0 0 0px rgba(249, 115, 22, 0)'],
+                            borderColor: ['rgba(249, 115, 22, 0.3)', 'rgba(249, 115, 22, 1)', 'rgba(249, 115, 22, 0.3)']
                         }}
-                        transition={{ duration: 2, repeat: Infinity }}
+                        transition={{ duration: 2, repeat: 9999 }}
                     >
-                        <motion.span animate={{ rotate: [0, 360] }} transition={{ duration: 3, repeat: Infinity, ease: "linear" }}>
+                        <motion.span animate={{ rotate: [0, 360] }} transition={{ duration: 3, repeat: 9999, ease: "linear" }}>
                             <RefreshCcw className="w-4 h-4" />
                         </motion.span>
                         ATUALIZADA SEMANALMENTE
@@ -183,8 +183,8 @@ const Fornecedores = () => {
                         <span className="text-white">Lista de </span>
                         <motion.span
                             className="text-gradient-animate"
-                            animate={{ textShadow: ['0 0 20px hsl(var(--primary) / 0.5)', '0 0 40px hsl(var(--primary) / 0.8)', '0 0 20px hsl(var(--primary) / 0.5)'] }}
-                            transition={{ duration: 2, repeat: Infinity }}
+                            animate={{ textShadow: ['0 0 20px rgba(249, 115, 22, 0.5)', '0 0 40px rgba(249, 115, 22, 0.8)', '0 0 20px rgba(249, 115, 22, 0.5)'] }}
+                            transition={{ duration: 2, repeat: 9999 }}
                         >Fornecedores</motion.span>
                     </h2>
 
@@ -217,7 +217,7 @@ const Fornecedores = () => {
                     <motion.div
                         className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent"
                         animate={{ x: ['-100%', '200%'] }}
-                        transition={{ duration: 3, repeat: Infinity, repeatDelay: 2 }}
+                        transition={{ duration: 3, repeat: 9999, repeatDelay: 2 }}
                     />
 
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6 relative z-10">
@@ -238,16 +238,16 @@ const Fornecedores = () => {
                                 <motion.span
                                     className="text-2xl md:text-3xl block mb-2"
                                     animate={{ scale: [1, 1.1, 1] }}
-                                    transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
+                                    transition={{ duration: 2, repeat: 9999, delay: index * 0.3 }}
                                 >
                                     {stat.icon}
                                 </motion.span>
                                 <motion.h4
                                     className="text-2xl md:text-3xl font-black text-white mb-1"
                                     animate={{
-                                        textShadow: ['0 0 0px', '0 0 20px hsl(var(--primary))', '0 0 0px']
+                                        textShadow: ['0 0 0px', '0 0 20px rgba(249, 115, 22, 1)', '0 0 0px']
                                     }}
-                                    transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
+                                    transition={{ duration: 2, repeat: 9999, delay: index * 0.2 }}
                                 >
                                     {stat.value}
                                 </motion.h4>
@@ -280,13 +280,13 @@ const Fornecedores = () => {
                             }}
                             animate={{
                                 y: [0, -3, 0],
-                                borderColor: ['rgba(255,255,255,0.1)', 'hsl(var(--primary) / 0.3)', 'rgba(255,255,255,0.1)']
+                                borderColor: ['rgba(255,255,255,0.1)', 'rgba(249, 115, 22, 0.3)', 'rgba(255,255,255,0.1)']
                             }}
-                            transition={{ duration: 3, repeat: Infinity, delay: index * 0.4 }}
+                            transition={{ duration: 3, repeat: 9999, delay: index * 0.4 }}
                         >
                             <motion.span
                                 animate={{ rotate: [0, 360] }}
-                                transition={{ duration: 5, repeat: Infinity, ease: "linear", delay: index }}
+                                transition={{ duration: 5, repeat: 9999, ease: "linear", delay: index }}
                             >
                                 <item.icon className="w-4 h-4 text-primary" />
                             </motion.span>

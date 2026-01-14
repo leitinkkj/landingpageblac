@@ -75,7 +75,7 @@ export const Interactive3DCard = ({
                 y: [0, -8, 0],
                 transition: {
                     duration: 4,
-                    repeat: Infinity,
+                    repeat: 9999,
                     ease: "easeInOut"
                 }
             } : {}}
@@ -118,24 +118,24 @@ export const AnimatedIcon = ({
     const animations = {
         spin: {
             rotate: [0, 360],
-            transition: { duration: 3, repeat: Infinity, ease: "linear" }
+            transition: { duration: 3, repeat: 9999, ease: "linear" }
         },
         bounce: {
             y: [0, -10, 0],
-            transition: { duration: 1, repeat: Infinity, ease: "easeInOut" }
+            transition: { duration: 1, repeat: 9999, ease: "easeInOut" }
         },
         pulse: {
             scale: [1, 1.15, 1],
-            transition: { duration: 1.5, repeat: Infinity, ease: "easeInOut" }
+            transition: { duration: 1.5, repeat: 9999, ease: "easeInOut" }
         },
         wobble: {
             rotate: [0, -5, 5, -3, 3, 0],
-            transition: { duration: 1.5, repeat: Infinity, ease: "easeInOut" }
+            transition: { duration: 1.5, repeat: 9999, ease: "easeInOut" }
         },
         float: {
             y: [0, -8, 0],
             x: [0, 3, 0],
-            transition: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+            transition: { duration: 3, repeat: 9999, ease: "easeInOut" }
         }
     };
 
@@ -172,7 +172,7 @@ export const GlowText = ({
                     `0 0 10px ${color}, 0 0 20px ${color}`,
                 ]
             }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            transition={{ duration: 2, repeat: 9999, ease: "easeInOut" }}
         >
             {children}
         </motion.span>
@@ -208,7 +208,7 @@ export const AnimatedButton = ({
                 ]
             }}
             transition={{
-                boxShadow: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+                boxShadow: { duration: 2, repeat: 9999, ease: "easeInOut" }
             }}
         >
             {/* Ripple effect container */}
@@ -256,7 +256,7 @@ export const FloatingParticles = ({
                     }}
                     transition={{
                         duration: 3 + Math.random() * 2,
-                        repeat: Infinity,
+                        repeat: 9999,
                         delay: i * 0.5,
                         ease: "easeInOut"
                     }}
@@ -301,7 +301,7 @@ export const AnimatedSection = ({
                     }}
                     transition={{
                         duration: 4,
-                        repeat: Infinity,
+                        repeat: 9999,
                         ease: "easeInOut"
                     }}
                 />
