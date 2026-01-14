@@ -123,10 +123,11 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ['lucide-react', 'framer-motion'],
   },
 
-  turbo: {
-  },
+
 
   // Webpack configurations para otimização de bundle
+  // Webpack configurations comentadas para evitar conflito com Turbopack (Next.js 16 default)
+  /*
   webpack: (config, { isServer }) => {
     // Otimização para módulos grandes
     if (!isServer) {
@@ -164,6 +165,7 @@ const nextConfig: NextConfig = {
     }
     return config;
   },
+  */
 };
 
 export default nextConfig;
