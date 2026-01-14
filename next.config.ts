@@ -6,6 +6,8 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
 
+
+
   // Otimização de imagens para melhor performance
   images: {
     formats: ['image/avif', 'image/webp'],
@@ -119,6 +121,9 @@ const nextConfig: NextConfig = {
     optimizeCss: true,
     // Package imports optimization
     optimizePackageImports: ['lucide-react', 'framer-motion'],
+  },
+
+  turbo: {
   },
 
   // Webpack configurations para otimização de bundle
