@@ -68,7 +68,7 @@ const PlatformVideo = () => {
       <motion.div
         className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent"
         animate={{ opacity: [0.5, 1, 0.5] }}
-        transition={{ duration: 3, repeat: Infinity }}
+        transition={{ duration: 3, repeat: 9999 }}
       />
 
       <div className="container relative z-10 mx-auto px-4 text-center">
@@ -85,7 +85,7 @@ const PlatformVideo = () => {
           <motion.div
             className="h-1 w-32 bg-gradient-to-r from-primary via-red-500 to-orange-500 mx-auto rounded-full mb-6"
             animate={{ width: ["8rem", "12rem", "8rem"] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            transition={{ duration: 3, repeat: 9999, ease: "easeInOut" }}
           />
 
           <p className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
@@ -117,7 +117,7 @@ const PlatformVideo = () => {
                 <div className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                   <motion.div
                     animate={{ scale: [1, 1.1, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
+                    transition={{ duration: 2, repeat: 9999 }}
                     className="bg-primary/80 p-6 rounded-full"
                   >
                     <Play className="w-12 h-12 text-white fill-white" />
@@ -145,7 +145,7 @@ const PlatformVideo = () => {
                 ACESSAR O MARKETPLACE AGORA
                 <motion.span
                   animate={{ x: [0, 5, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
+                  transition={{ duration: 1.5, repeat: 9999 }}
                 >
                   →
                 </motion.span>
@@ -159,7 +159,7 @@ const PlatformVideo = () => {
           <motion.div
             className="mt-10 inline-flex items-center gap-2 text-primary font-semibold"
             animate={{ opacity: [0.7, 1, 0.7] }}
-            transition={{ duration: 2, repeat: Infinity }}
+            transition={{ duration: 2, repeat: 9999 }}
           >
             <Sparkles className="w-5 h-5" />
             <span>Atualizado semanalmente com novos fornecedores e produtos virais.</span>

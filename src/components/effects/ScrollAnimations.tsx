@@ -218,7 +218,7 @@ export function AnimatedIcon({ children, className = '' }: AnimatedIconProps) {
             }}
             transition={{
                 duration: 3,
-                repeat: Infinity,
+                repeat: 9999,
                 ease: 'easeInOut',
             }}
             whileHover={{
@@ -278,7 +278,7 @@ export function GlowPulse({ children, className = '', color = 'hsl(var(--primary
             }}
             transition={{
                 duration: 2,
-                repeat: Infinity,
+                repeat: 9999,
                 ease: 'easeInOut',
             }}
         >

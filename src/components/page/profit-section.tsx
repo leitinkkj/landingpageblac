@@ -55,20 +55,20 @@ const ProfitCard = ({ icon: Icon, label, buy, sell, index }: { icon: LucideIcon,
         animate={{
           borderColor: ['hsl(var(--primary) / 0.1)', 'hsl(var(--primary) / 0.3)', 'hsl(var(--primary) / 0.1)']
         }}
-        transition={{ duration: 3, repeat: Infinity, delay: index * 0.5 }}
+        transition={{ duration: 3, repeat: 9999, delay: index * 0.5 }}
       >
         {/* Animated glow */}
         <motion.div
           className="absolute inset-0 bg-gradient-to-r from-green-500/0 via-green-500/5 to-green-500/0"
           animate={{ x: ['-100%', '100%'] }}
-          transition={{ duration: 3, repeat: Infinity, delay: index * 0.3 }}
+          transition={{ duration: 3, repeat: 9999, delay: index * 0.3 }}
         />
 
         {/* Icon */}
         <motion.div
           className="flex-shrink-0 bg-gradient-to-br from-primary/20 to-transparent p-3 rounded-xl border border-primary/20"
           animate={{ rotate: [0, 5, -5, 0] }}
-          transition={{ duration: 4, repeat: Infinity, delay: index * 0.2 }}
+          transition={{ duration: 4, repeat: 9999, delay: index * 0.2 }}
         >
           <Icon className="h-6 w-6 text-primary" />
         </motion.div>
@@ -84,7 +84,7 @@ const ProfitCard = ({ icon: Icon, label, buy, sell, index }: { icon: LucideIcon,
           <motion.div
             className="text-green-400 font-black text-lg"
             animate={{ scale: [1, 1.05, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
+            transition={{ duration: 2, repeat: 9999 }}
           >+R${animatedProfit}</motion.div>
           <div className="text-green-400/70 text-xs">+{profitPercentage}%</div>
         </div>
@@ -118,7 +118,7 @@ const ProfitSection = () => {
       <motion.div
         className="absolute top-0 left-1/4 w-96 h-96 bg-green-500/10 rounded-full blur-3xl"
         animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.5, 0.3] }}
-        transition={{ duration: 5, repeat: Infinity }}
+        transition={{ duration: 5, repeat: 9999 }}
       />
 
       <div className="container mx-auto px-4 relative z-10">
@@ -133,7 +133,7 @@ const ProfitSection = () => {
           <motion.div
             className="relative inline-block mb-6"
             animate={{ y: [0, -10, 0], rotate: [0, 5, -5, 0] }}
-            transition={{ duration: 3, repeat: Infinity }}
+            transition={{ duration: 3, repeat: 9999 }}
           >
             <span className="text-6xl">💰</span>
           </motion.div>
@@ -141,7 +141,7 @@ const ProfitSection = () => {
           <motion.span
             className="block text-primary text-sm font-bold tracking-widest uppercase mb-4"
             animate={{ opacity: [0.7, 1, 0.7] }}
-            transition={{ duration: 2, repeat: Infinity }}
+            transition={{ duration: 2, repeat: 9999 }}
           >
             LUCROS REAIS
           </motion.span>
@@ -157,7 +157,7 @@ const ProfitSection = () => {
                   '0 0 20px rgba(34, 197, 94, 0.5)'
                 ]
               }}
-              transition={{ duration: 2, repeat: Infinity }}
+              transition={{ duration: 2, repeat: 9999 }}
             >Lucrando</motion.span>
           </h2>
         </motion.div>
@@ -176,17 +176,17 @@ const ProfitSection = () => {
               animate={{
                 borderColor: ['hsl(var(--primary) / 0.2)', 'rgba(34, 197, 94, 0.5)', 'hsl(var(--primary) / 0.2)']
               }}
-              transition={{ duration: 4, repeat: Infinity }}
+              transition={{ duration: 4, repeat: 9999 }}
             >
               <motion.div
                 className="absolute top-0 right-0 w-32 h-32 bg-green-500/20 rounded-full blur-3xl"
                 animate={{ scale: [1, 1.5, 1], opacity: [0.3, 0.6, 0.3] }}
-                transition={{ duration: 3, repeat: Infinity }}
+                transition={{ duration: 3, repeat: 9999 }}
               />
 
               <motion.div
                 animate={{ rotate: [0, 360] }}
-                transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                transition={{ duration: 10, repeat: 9999, ease: "linear" }}
               >
                 <DollarSign className="w-12 h-12 text-green-400 mb-4" />
               </motion.div>
@@ -194,7 +194,7 @@ const ProfitSection = () => {
               <motion.div
                 className="text-5xl md:text-6xl font-black text-white mb-2"
                 animate={{ scale: [1, 1.02, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
+                transition={{ duration: 2, repeat: 9999 }}
               >
                 R$<span className="text-green-400">2.000</span>
               </motion.div>
@@ -204,7 +204,7 @@ const ProfitSection = () => {
               <motion.div
                 className="mt-6 flex items-center gap-2 text-green-400"
                 animate={{ x: [0, 5, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
+                transition={{ duration: 2, repeat: 9999 }}
               >
                 <TrendingUp className="w-5 h-5" />
                 <span className="font-semibold">+127% este mês</span>
@@ -239,7 +239,7 @@ const ProfitSection = () => {
                   '0 0 20px rgba(34, 197, 94, 0.3)'
                 ]
               }}
-              transition={{ duration: 2, repeat: Infinity }}
+              transition={{ duration: 2, repeat: 9999 }}
               className="inline-block rounded-xl"
             >
               <Button
@@ -247,7 +247,7 @@ const ProfitSection = () => {
                 className="btn-3d font-bold text-lg px-10 py-7 rounded-xl bg-gradient-to-r from-green-500 to-emerald-500"
               >
                 VER LUCROS AO VIVO
-                <motion.span className="ml-2" animate={{ x: [0, 5, 0] }} transition={{ duration: 1, repeat: Infinity }}>→</motion.span>
+                <motion.span className="ml-2" animate={{ x: [0, 5, 0] }} transition={{ duration: 1, repeat: 9999 }}>→</motion.span>
               </Button>
             </motion.div>
           </Link>

@@ -32,7 +32,7 @@ const Footer = () => {
       <motion.div
         className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-primary/10 rounded-full blur-3xl"
         animate={{ opacity: [0.3, 0.5, 0.3], scale: [1, 1.2, 1] }}
-        transition={{ duration: 4, repeat: Infinity }}
+        transition={{ duration: 4, repeat: 9999 }}
       />
 
       <div className="container mx-auto px-4 py-12 relative z-10">
@@ -78,8 +78,8 @@ const Footer = () => {
                       ]
                     }}
                     transition={{
-                      y: { duration: 2, repeat: Infinity, delay: index * 0.3 },
-                      boxShadow: { duration: 2, repeat: Infinity, delay: index * 0.3 }
+                      y: { duration: 2, repeat: 9999, delay: index * 0.3 },
+                      boxShadow: { duration: 2, repeat: 9999, delay: index * 0.3 }
                     }}
                     className="rounded-full"
                   >
@@ -102,7 +102,7 @@ const Footer = () => {
                   key={link}
                   whileHover={{ scale: 1.05 }}
                   animate={{ opacity: [0.7, 1, 0.7] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
+                  transition={{ duration: 2, repeat: 9999, delay: index * 0.3 }}
                 >
                   <Link
                     href="#"
@@ -133,7 +133,7 @@ const Footer = () => {
           <motion.p
             className="text-sm text-muted-foreground"
             animate={{ opacity: [0.5, 0.8, 0.5] }}
-            transition={{ duration: 3, repeat: Infinity }}
+            transition={{ duration: 3, repeat: 9999 }}
           >
             &copy; {new Date().getFullYear()} Black Shoppe. Todos os direitos reservados.
           </motion.p>

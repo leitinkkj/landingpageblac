@@ -49,7 +49,7 @@ const Floating3DIcon = ({
             transition={{
                 duration: duration,
                 delay: delay,
-                repeat: Infinity,
+                repeat: 9999,
                 ease: "easeInOut",
             }}
         >
@@ -143,7 +143,7 @@ const Floating3DBackground = () => {
                 }}
                 transition={{
                     duration: 20,
-                    repeat: Infinity,
+                    repeat: 9999,
                     ease: "linear",
                 }}
             />
@@ -194,7 +194,7 @@ const Floating3DBackground = () => {
                     transition={{
                         duration: 8 + Math.random() * 8,
                         delay: i * 0.5,
-                        repeat: Infinity,
+                        repeat: 9999,
                         ease: "easeInOut",
                     }}
                 />

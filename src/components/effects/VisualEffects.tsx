@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
+import { useState, useEffect, useMemo } from 'react';
 import {
     Sparkles, Star, Zap, Crown, Gem, Flame,
     DollarSign, ShoppingBag, Rocket, Heart
@@ -34,7 +35,7 @@ export const FloatingIcon = ({
         transition={{
             duration: duration,
             delay: delay,
-            repeat: Infinity,
+            repeat: 9999,
             ease: "easeInOut"
         }}
     >
@@ -44,14 +45,26 @@ export const FloatingIcon = ({
 
 // Animated particles
 export const AnimatedParticles = ({ count = 20 }: { count?: number }) => {
-    const particles = Array.from({ length: count }, (_, i) => ({
-        id: i,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        size: Math.random() * 4 + 2,
-        duration: Math.random() * 10 + 10,
-        delay: Math.random() * 5,
-    }));
+    const [mounted, setMounted] = useState(false);
+
+    // Generate particles only on client side to avoid hydration mismatch
+    const particles = useMemo(() => {
+        if (!mounted) return [];
+        return Array.from({ length: count }, (_, i) => ({
+            id: i,
+            x: Math.random() * 100,
+            y: Math.random() * 100,
+            size: Math.random() * 4 + 2,
+            duration: Math.random() * 10 + 10,
+            delay: Math.random() * 5,
+        }));
+    }, [count, mounted]);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) return null;
 
     return (
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -73,7 +86,7 @@ export const AnimatedParticles = ({ count = 20 }: { count?: number }) => {
                     transition={{
                         duration: particle.duration,
                         delay: particle.delay,
-                        repeat: Infinity,
+                        repeat: 9999,
                         ease: "easeInOut",
                     }}
                 />
@@ -96,7 +109,7 @@ export const NeonBorder = ({ children, className = "" }: { children: React.React
             }}
             transition={{
                 duration: 3,
-                repeat: Infinity,
+                repeat: 9999,
                 ease: "linear",
             }}
         />
@@ -112,14 +125,14 @@ export const NeonText = ({ children, className = "" }: { children: React.ReactNo
         className={className}
         animate={{
             textShadow: [
-                '0 0 10px hsl(var(--primary)), 0 0 20px hsl(var(--primary)), 0 0 30px hsl(var(--primary))',
-                '0 0 20px hsl(var(--primary)), 0 0 40px hsl(var(--primary)), 0 0 60px hsl(var(--primary))',
-                '0 0 10px hsl(var(--primary)), 0 0 20px hsl(var(--primary)), 0 0 30px hsl(var(--primary))',
+                '0 0 10px rgba(249, 115, 22, 0.8), 0 0 20px rgba(249, 115, 22, 0.6), 0 0 30px rgba(249, 115, 22, 0.4)',
+                '0 0 20px rgba(249, 115, 22, 1), 0 0 40px rgba(249, 115, 22, 0.8), 0 0 60px rgba(249, 115, 22, 0.6)',
+                '0 0 10px rgba(249, 115, 22, 0.8), 0 0 20px rgba(249, 115, 22, 0.6), 0 0 30px rgba(249, 115, 22, 0.4)',
             ]
         }}
         transition={{
             duration: 2,
-            repeat: Infinity,
+            repeat: 9999,
             ease: "easeInOut"
         }}
     >
@@ -128,20 +141,26 @@ export const NeonText = ({ children, className = "" }: { children: React.ReactNo
 );
 
 // Scanning line effect
-export const ScanLine = ({ className = "" }: { className?: string }) => (
-    <motion.div
-        className={`absolute left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary/50 to-transparent pointer-events-none ${className}`}
-        animate={{
-            top: ['0%', '100%'],
-            opacity: [0, 1, 0],
-        }}
-        transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "linear",
-        }}
-    />
-);
+export const ScanLine = ({ className = "" }: { className?: string }) => {
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => setMounted(true), []);
+    if (!mounted) return null;
+
+    return (
+        <motion.div
+            className={`absolute left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary/50 to-transparent pointer-events-none ${className}`}
+            animate={{
+                top: ['0%', '100%'],
+                opacity: [0, 1, 0],
+            }}
+            transition={{
+                duration: 4,
+                repeat: 9999,
+                ease: "linear",
+            }}
+        />
+    );
+};
 
 // Orbiting element
 export const OrbitingElement = ({
@@ -165,7 +184,7 @@ export const OrbitingElement = ({
         transition={{
             duration,
             delay,
-            repeat: Infinity,
+            repeat: 9999,
             ease: "linear",
         }}
         style={{ width: radius * 2, height: radius * 2 }}
@@ -185,7 +204,7 @@ export const GlitchText = ({ children, className = "" }: { children: React.React
         }}
         transition={{
             duration: 0.5,
-            repeat: Infinity,
+            repeat: 9999,
             repeatDelay: 3,
         }}
     >
@@ -197,7 +216,7 @@ export const GlitchText = ({ children, className = "" }: { children: React.React
             }}
             transition={{
                 duration: 0.5,
-                repeat: Infinity,
+                repeat: 9999,
                 repeatDelay: 3,
             }}
             style={{ clipPath: 'inset(0 0 50% 0)' }}
@@ -248,28 +267,34 @@ export const SectionFloatingIcons = ({ variant = "default" }: { variant?: "defau
 };
 
 // Animated background grid
-export const AnimatedGrid = ({ className = "" }: { className?: string }) => (
-    <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
-        <motion.div
-            className="absolute inset-0"
-            style={{
-                backgroundImage: `
-          linear-gradient(rgba(255,107,0,0.03) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255,107,0,0.03) 1px, transparent 1px)
-        `,
-                backgroundSize: '50px 50px',
-            }}
-            animate={{
-                backgroundPosition: ['0px 0px', '50px 50px'],
-            }}
-            transition={{
-                duration: 20,
-                repeat: Infinity,
-                ease: "linear",
-            }}
-        />
-    </div>
-);
+export const AnimatedGrid = ({ className = "" }: { className?: string }) => {
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => setMounted(true), []);
+    if (!mounted) return null;
+
+    return (
+        <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
+            <motion.div
+                className="absolute inset-0"
+                style={{
+                    backgroundImage: `
+              linear-gradient(rgba(255,107,0,0.03) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,107,0,0.03) 1px, transparent 1px)
+            `,
+                    backgroundSize: '50px 50px',
+                }}
+                animate={{
+                    backgroundPosition: ['0px 0px', '50px 50px'],
+                }}
+                transition={{
+                    duration: 20,
+                    repeat: 9999,
+                    ease: "linear",
+                }}
+            />
+        </div>
+    );
+};
 
 // Electric arc effect
 export const ElectricArc = ({ className = "" }: { className?: string }) => (
@@ -281,7 +306,7 @@ export const ElectricArc = ({ className = "" }: { className?: string }) => (
         }}
         transition={{
             duration: 0.5,
-            repeat: Infinity,
+            repeat: 9999,
             repeatDelay: 2,
         }}
     />

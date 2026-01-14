@@ -30,7 +30,7 @@ const Fronteireiros = () => {
             <motion.div
                 className="absolute top-1/3 right-1/4 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl"
                 animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.4, 0.2] }}
-                transition={{ duration: 5, repeat: Infinity }}
+                transition={{ duration: 5, repeat: 9999 }}
             />
 
             <div className="container mx-auto px-4 relative z-10">
@@ -45,7 +45,7 @@ const Fronteireiros = () => {
                         <motion.div
                             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-sm font-bold mb-6"
                             animate={{ boxShadow: ['0 0 0px rgba(14,165,233,0)', '0 0 20px rgba(14,165,233,0.5)', '0 0 0px rgba(14,165,233,0)'] }}
-                            transition={{ duration: 2, repeat: Infinity }}
+                            transition={{ duration: 2, repeat: 9999 }}
                         >
                             <Plane className="w-4 h-4" />
                             IMPORTAÇÃO FACILITADA
@@ -56,7 +56,7 @@ const Fronteireiros = () => {
                             <motion.span
                                 className="bg-gradient-to-r from-sky-400 to-cyan-400 bg-clip-text text-transparent"
                                 animate={{ textShadow: ['0 0 20px rgba(14,165,233,0.5)', '0 0 40px rgba(14,165,233,0.8)', '0 0 20px rgba(14,165,233,0.5)'] }}
-                                transition={{ duration: 2, repeat: Infinity }}
+                                transition={{ duration: 2, repeat: 9999 }}
                             >Fronteireiros</motion.span>
                         </h2>
 
@@ -85,7 +85,7 @@ const Fronteireiros = () => {
                                     <motion.div
                                         className="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-500/20 to-cyan-500/20 border border-sky-500/30 flex items-center justify-center"
                                         animate={{ rotate: [0, 5, -5, 0] }}
-                                        transition={{ duration: 4, repeat: Infinity, delay: index * 0.2 }}
+                                        transition={{ duration: 4, repeat: 9999, delay: index * 0.2 }}
                                     >
                                         <item.icon className="w-5 h-5 text-sky-400" />
                                     </motion.div>
@@ -105,7 +105,7 @@ const Fronteireiros = () => {
                         <motion.div
                             className="glass-card p-8 relative overflow-hidden"
                             animate={{ borderColor: ['rgba(14,165,233,0.2)', 'rgba(14,165,233,0.5)', 'rgba(14,165,233,0.2)'] }}
-                            transition={{ duration: 4, repeat: Infinity }}
+                            transition={{ duration: 4, repeat: 9999 }}
                         >
                             <ScanLine />
 
@@ -115,7 +115,7 @@ const Fronteireiros = () => {
                                 <motion.div
                                     className="absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-sky-500/50 via-cyan-500 to-sky-500/50"
                                     animate={{ opacity: [0.3, 1, 0.3], scaleX: [0.8, 1, 0.8] }}
-                                    transition={{ duration: 3, repeat: Infinity }}
+                                    transition={{ duration: 3, repeat: 9999 }}
                                 />
 
                                 <div className="grid grid-cols-4 gap-4 relative z-10">
@@ -131,7 +131,7 @@ const Fronteireiros = () => {
                                             <motion.div
                                                 className="w-14 h-14 mx-auto rounded-full bg-gradient-to-br from-sky-500/20 to-cyan-500/20 border border-sky-500/30 flex items-center justify-center mb-3"
                                                 animate={{ scale: [1, 1.1, 1], y: [0, -5, 0] }}
-                                                transition={{ duration: 3, repeat: Infinity, delay: index * 0.3 }}
+                                                transition={{ duration: 3, repeat: 9999, delay: index * 0.3 }}
                                             >
                                                 <routine.icon className="w-6 h-6 text-sky-400" />
                                             </motion.div>
@@ -151,7 +151,7 @@ const Fronteireiros = () => {
                                     <motion.span
                                         className="text-3xl font-black text-sky-400"
                                         animate={{ opacity: [0.7, 1, 0.7] }}
-                                        transition={{ duration: 2, repeat: Infinity }}
+                                        transition={{ duration: 2, repeat: 9999 }}
                                     >50+</motion.span>
                                     <p className="text-muted-foreground text-xs">Fronteireiros ativos</p>
                                 </motion.div>
@@ -162,7 +162,7 @@ const Fronteireiros = () => {
                                     <motion.span
                                         className="text-3xl font-black text-cyan-400"
                                         animate={{ opacity: [0.7, 1, 0.7] }}
-                                        transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+                                        transition={{ duration: 2, repeat: 9999, delay: 0.5 }}
                                     >60%</motion.span>
                                     <p className="text-muted-foreground text-xs">Economia média</p>
                                 </motion.div>
@@ -172,7 +172,7 @@ const Fronteireiros = () => {
                             <motion.div
                                 className="absolute -bottom-10 -right-10 w-40 h-40 bg-sky-500/20 rounded-full blur-3xl"
                                 animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.5, 0.3] }}
-                                transition={{ duration: 4, repeat: Infinity }}
+                                transition={{ duration: 4, repeat: 9999 }}
                             />
                         </motion.div>
                     </motion.div>

@@ -1,189 +1,144 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Bot, MessageSquare, Target, TrendingUp, Lightbulb, Brain, Sparkles, Star, Zap } from 'lucide-react';
-import { AnimatedParticles, FloatingIcon, ScanLine } from '@/components/effects/VisualEffects';
-
-const features = [
-    { icon: Target, title: "Defina Metas", desc: "Estabeleça objetivos claros pro seu negócio" },
-    { icon: TrendingUp, title: "Estratégias", desc: "Receba estratégias personalizadas" },
-    { icon: Lightbulb, title: "Dicas Diárias", desc: "Insights para crescer seu faturamento" },
-    { icon: MessageSquare, title: "Chat 24/7", desc: "Tire dúvidas a qualquer momento" },
-];
+import { Bot, MessageSquare, Target, TrendingUp, Lightbulb, Zap } from 'lucide-react';
+import { AnimatedParticles, ScanLine } from '@/components/effects/VisualEffects';
 
 const IANegocios = () => {
     return (
-        <section id="ia-negocios" className="relative py-20 md:py-28 overflow-hidden">
+        <section id="ia-negocios" className="relative py-16 md:py-24 overflow-hidden">
             {/* Background */}
-            <div className="absolute inset-0 bg-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-950/5 to-transparent" />
 
-            <AnimatedParticles count={15} />
-            <ScanLine />
+            <AnimatedParticles count={10} />
 
-            {/* Floating Icons */}
-            <FloatingIcon Icon={Brain} className="top-[10%] left-[5%] w-8 h-8" delay={0} />
-            <FloatingIcon Icon={Lightbulb} className="top-[20%] right-[8%] w-10 h-10" delay={1} />
-            <FloatingIcon Icon={Target} className="bottom-[20%] left-[8%] w-6 h-6" delay={2} />
-            <FloatingIcon Icon={Star} className="bottom-[30%] right-[5%] w-7 h-7" delay={0.5} />
-
-            {/* Glows */}
-            <motion.div
-                className="absolute top-1/3 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"
-                animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.4, 0.2] }}
-                transition={{ duration: 5, repeat: Infinity }}
-            />
+            {/* Subtle Glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[150px]" />
 
             <div className="container mx-auto px-4 relative z-10">
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
 
-                    {/* Left - Content */}
+                    {/* Left - Content (Breve e Objetivo) */}
                     <motion.div
-                        initial={{ opacity: 0, x: -40 }}
+                        initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
+                        className="text-center lg:text-left"
                     >
-                        <motion.div
-                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-400 text-sm font-bold mb-6"
-                            animate={{ boxShadow: ['0 0 0px rgba(168,85,247,0)', '0 0 20px rgba(168,85,247,0.5)', '0 0 0px rgba(168,85,247,0)'] }}
-                            transition={{ duration: 2, repeat: Infinity }}
-                        >
-                            <Brain className="w-4 h-4" />
-                            SEU COACH DE NEGÓCIOS
-                        </motion.div>
+                        {/* Badge */}
+                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-400 text-sm font-bold mb-4">
+                            <Bot className="w-4 h-4" />
+                            COACH PESSOAL
+                        </div>
 
-                        <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-black uppercase mb-6">
+                        {/* Title */}
+                        <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-black uppercase mb-4">
                             <span className="text-white">IA de </span>
-                            <motion.span
-                                className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
-                                animate={{ textShadow: ['0 0 20px rgba(168,85,247,0.5)', '0 0 40px rgba(168,85,247,0.8)', '0 0 20px rgba(168,85,247,0.5)'] }}
-                                transition={{ duration: 2, repeat: Infinity }}
-                            >Negócios</motion.span>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Negócios</span>
                         </h2>
 
-                        <p className="text-muted-foreground text-lg mb-8 max-w-lg">
-                            Uma inteligência artificial que é tipo seu <span className="text-white font-semibold">treinador pessoal</span>,
-                            seu <span className="text-purple-400 font-semibold">coach do seu negócio</span>.
-                            Ela te guia passo a passo para escalar suas vendas.
+                        {/* Texto Objetivo - Uma linha */}
+                        <p className="text-muted-foreground text-lg md:text-xl mb-6 max-w-lg mx-auto lg:mx-0">
+                            Sua <span className="text-white font-semibold">mentora 24h</span> para escalar vendas
                         </p>
 
-                        {/* Features Grid */}
-                        <div className="grid grid-cols-2 gap-4">
-                            {features.map((feature, index) => (
+                        {/* Visual Icons - Simples */}
+                        <div className="flex justify-center lg:justify-start gap-4">
+                            {[
+                                { icon: Target, color: "text-purple-400", border: "border-purple-500/30" },
+                                { icon: TrendingUp, color: "text-pink-400", border: "border-pink-500/30" },
+                                { icon: Lightbulb, color: "text-amber-400", border: "border-amber-500/30" },
+                                { icon: MessageSquare, color: "text-cyan-400", border: "border-cyan-500/30" },
+                            ].map((item, i) => (
                                 <motion.div
-                                    key={feature.title}
-                                    className="glass-card p-4 group"
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: index * 0.1 }}
-                                    whileHover={{ y: -3, scale: 1.02 }}
+                                    key={i}
+                                    className={`w-12 h-12 rounded-xl bg-white/5 border ${item.border} flex items-center justify-center`}
+                                    whileHover={{ scale: 1.1, y: -3 }}
                                 >
-                                    <motion.div
-                                        className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 border border-purple-500/30 flex items-center justify-center mb-3"
-                                        animate={{ rotate: [0, 5, -5, 0] }}
-                                        transition={{ duration: 4, repeat: Infinity, delay: index * 0.2 }}
-                                    >
-                                        <feature.icon className="w-5 h-5 text-purple-400" />
-                                    </motion.div>
-                                    <h4 className="font-bold text-white text-sm mb-1">{feature.title}</h4>
-                                    <p className="text-muted-foreground text-xs">{feature.desc}</p>
+                                    <item.icon className={`w-6 h-6 ${item.color}`} />
                                 </motion.div>
                             ))}
                         </div>
                     </motion.div>
 
-                    {/* Right - Visual */}
+                    {/* Right - Chat Visual */}
                     <motion.div
-                        initial={{ opacity: 0, x: 40 }}
+                        initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
                         className="relative"
                     >
-                        {/* Chat Interface Mockup */}
                         <motion.div
-                            className="glass-card p-6 relative overflow-hidden"
-                            animate={{ borderColor: ['rgba(168,85,247,0.2)', 'rgba(168,85,247,0.5)', 'rgba(168,85,247,0.2)'] }}
-                            transition={{ duration: 4, repeat: Infinity }}
+                            className="glass-card p-5 md:p-6 relative overflow-hidden"
+                            animate={{ borderColor: ['rgba(168,85,247,0.2)', 'rgba(168,85,247,0.4)', 'rgba(168,85,247,0.2)'] }}
+                            transition={{ duration: 4, repeat: 9999 }}
                         >
                             <ScanLine />
 
                             {/* Chat Header */}
-                            <div className="flex items-center gap-3 mb-6 pb-4 border-b border-white/10">
+                            <div className="flex items-center gap-3 mb-4 pb-3 border-b border-white/10">
                                 <motion.div
-                                    className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center"
+                                    className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center"
                                     animate={{ scale: [1, 1.05, 1] }}
-                                    transition={{ duration: 2, repeat: Infinity }}
+                                    transition={{ duration: 2, repeat: 9999 }}
                                 >
-                                    <Bot className="w-6 h-6 text-white" />
+                                    <Bot className="w-5 h-5 text-white" />
                                 </motion.div>
                                 <div>
-                                    <h4 className="font-bold text-white">IA Coach Black</h4>
-                                    <motion.span
-                                        className="text-green-400 text-xs flex items-center gap-1"
-                                        animate={{ opacity: [0.7, 1, 0.7] }}
-                                        transition={{ duration: 2, repeat: Infinity }}
-                                    >
-                                        <span className="w-2 h-2 bg-green-400 rounded-full" />
-                                        Online agora
-                                    </motion.span>
+                                    <h4 className="font-bold text-white text-sm">IA Coach</h4>
+                                    <span className="text-green-400 text-xs flex items-center gap-1">
+                                        <span className="w-1.5 h-1.5 bg-green-400 rounded-full" />
+                                        Online
+                                    </span>
                                 </div>
                             </div>
 
-                            {/* Chat Messages */}
-                            <div className="space-y-4">
-                                {/* User message */}
+                            {/* Chat Messages - Compacto */}
+                            <div className="space-y-3">
                                 <motion.div
                                     className="flex justify-end"
                                     initial={{ opacity: 0, x: 20 }}
                                     whileInView={{ opacity: 1, x: 0 }}
                                     viewport={{ once: true }}
-                                    transition={{ delay: 0.3 }}
                                 >
-                                    <div className="bg-primary/20 border border-primary/30 rounded-2xl rounded-br-md px-4 py-3 max-w-[80%]">
-                                        <p className="text-white text-sm">Como faço pra aumentar minhas vendas no Instagram?</p>
+                                    <div className="bg-primary/20 border border-primary/30 rounded-2xl rounded-br-md px-4 py-2.5 max-w-[85%]">
+                                        <p className="text-white text-sm">Como aumento minhas vendas?</p>
                                     </div>
                                 </motion.div>
 
-                                {/* Bot message */}
                                 <motion.div
                                     className="flex justify-start"
                                     initial={{ opacity: 0, x: -20 }}
                                     whileInView={{ opacity: 1, x: 0 }}
                                     viewport={{ once: true }}
-                                    transition={{ delay: 0.5 }}
+                                    transition={{ delay: 0.3 }}
                                 >
-                                    <div className="bg-white/5 border border-white/10 rounded-2xl rounded-bl-md px-4 py-3 max-w-[80%]">
-                                        <p className="text-white text-sm mb-2">Ótima pergunta! Aqui vão 3 estratégias comprovadas:</p>
-                                        <ul className="text-muted-foreground text-xs space-y-1">
-                                            <li>✅ Poste 3x ao dia nos horários de pico</li>
-                                            <li>✅ Use stories com enquetes e perguntas</li>
-                                            <li>✅ Faça parcerias com micro-influencers</li>
+                                    <div className="bg-white/5 border border-white/10 rounded-2xl rounded-bl-md px-4 py-2.5 max-w-[85%]">
+                                        <p className="text-white text-sm">Aqui vão 3 estratégias:</p>
+                                        <ul className="text-muted-foreground text-xs mt-1 space-y-0.5">
+                                            <li>✅ Poste 3x/dia nos horários de pico</li>
+                                            <li>✅ Stories com enquetes</li>
+                                            <li>✅ Parcerias com influencers</li>
                                         </ul>
                                     </div>
                                 </motion.div>
 
-                                {/* Typing indicator */}
-                                <motion.div className="flex items-center gap-2 text-muted-foreground text-xs">
-                                    <motion.span
-                                        className="flex gap-1"
-                                        animate={{ opacity: [0.3, 1, 0.3] }}
-                                        transition={{ duration: 1.5, repeat: Infinity }}
-                                    >
-                                        <span className="w-2 h-2 bg-purple-400 rounded-full" />
-                                        <span className="w-2 h-2 bg-purple-400 rounded-full" />
-                                        <span className="w-2 h-2 bg-purple-400 rounded-full" />
-                                    </motion.span>
-                                    IA está digitando...
+                                {/* Typing */}
+                                <motion.div
+                                    className="flex items-center gap-1.5 text-muted-foreground text-xs"
+                                    animate={{ opacity: [0.5, 1, 0.5] }}
+                                    transition={{ duration: 1.5, repeat: 9999 }}
+                                >
+                                    <span className="w-1.5 h-1.5 bg-purple-400 rounded-full" />
+                                    <span className="w-1.5 h-1.5 bg-purple-400 rounded-full" />
+                                    <span className="w-1.5 h-1.5 bg-purple-400 rounded-full" />
+                                    <span className="ml-1">digitando...</span>
                                 </motion.div>
                             </div>
 
                             {/* Glow */}
-                            <motion.div
-                                className="absolute -bottom-10 -right-10 w-40 h-40 bg-purple-500/20 rounded-full blur-3xl"
-                                animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.5, 0.3] }}
-                                transition={{ duration: 4, repeat: Infinity }}
-                            />
+                            <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-purple-500/20 rounded-full blur-3xl" />
                         </motion.div>
                     </motion.div>
                 </div>

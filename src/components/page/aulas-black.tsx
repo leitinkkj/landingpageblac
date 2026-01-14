@@ -1,145 +1,141 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { GraduationCap, Play, BookOpen, TrendingUp, Target, Award, Star, Sparkles, Zap, Rocket } from 'lucide-react';
-import { AnimatedParticles, FloatingIcon, ScanLine } from '@/components/effects/VisualEffects';
+import { GraduationCap, BookOpen, TrendingUp, Target, Rocket, ArrowRight, Play } from 'lucide-react';
 
-const modules = [
-    { num: "01", title: "Fundamentos do Atacado", desc: "Entenda como funciona o mercado", icon: BookOpen },
-    { num: "02", title: "Minerando Fornecedores", desc: "Use nossa IA para encontrar os melhores", icon: Target },
-    { num: "03", title: "Estratégias de Revenda", desc: "Venda com alta margem de lucro", icon: TrendingUp },
-    { num: "04", title: "De Lojista a Fornecedor", desc: "O método para escalar grande", icon: Rocket },
+const steps = [
+    { num: "01", title: "Fundamentos", icon: BookOpen },
+    { num: "02", title: "Mineração IA", icon: Target },
+    { num: "03", title: "Estratégias", icon: TrendingUp },
+    { num: "04", title: "Escala", icon: Rocket },
 ];
 
 const AulasBlack = () => {
     return (
-        <section id="aulas" className="relative py-20 md:py-28 overflow-hidden">
-            {/* Background */}
-            <div className="absolute inset-0 bg-transparent" />
-
-            <AnimatedParticles count={15} />
-            <ScanLine />
-
-            {/* Floating Icons */}
-            <FloatingIcon Icon={GraduationCap} className="top-[10%] left-[5%] w-8 h-8" delay={0} />
-            <FloatingIcon Icon={Award} className="top-[20%] right-[8%] w-10 h-10" delay={1} />
-            <FloatingIcon Icon={BookOpen} className="bottom-[20%] left-[8%] w-6 h-6" delay={2} />
-            <FloatingIcon Icon={Star} className="bottom-[30%] right-[5%] w-7 h-7" delay={0.5} />
-
-            {/* Glows */}
+        <section id="aulas" className="relative py-16 md:py-20 overflow-hidden">
+            {/* Subtle background glow */}
             <motion.div
-                className="absolute top-1/3 left-1/4 w-96 h-96 bg-red-500/10 rounded-full blur-3xl"
-                animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.4, 0.2] }}
-                transition={{ duration: 5, repeat: Infinity }}
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-gradient-to-r from-red-500/10 via-orange-500/10 to-red-500/10 rounded-full blur-3xl"
+                animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
+                transition={{ duration: 6, repeat: 9999 }}
             />
 
             <div className="container mx-auto px-4 relative z-10">
-                {/* Header */}
+                {/* Compact Header */}
                 <motion.div
-                    className="text-center mb-12"
+                    className="text-center mb-10"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                 >
                     <motion.div
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-sm font-bold mb-6"
-                        animate={{ boxShadow: ['0 0 0px rgba(239,68,68,0)', '0 0 20px rgba(239,68,68,0.5)', '0 0 0px rgba(239,68,68,0)'] }}
-                        transition={{ duration: 2, repeat: Infinity }}
+                        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-bold mb-4"
+                        animate={{ boxShadow: ['0 0 0px rgba(239,68,68,0)', '0 0 15px rgba(239,68,68,0.4)', '0 0 0px rgba(239,68,68,0)'] }}
+                        transition={{ duration: 2, repeat: 9999 }}
                     >
-                        <GraduationCap className="w-4 h-4" />
+                        <GraduationCap className="w-3.5 h-3.5" />
                         TREINAMENTO EXCLUSIVO
                     </motion.div>
 
-                    <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-black uppercase mb-4">
+                    <h2 className="font-headline text-3xl md:text-4xl lg:text-5xl font-black uppercase mb-3">
                         <motion.span
                             className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent"
-                            animate={{ textShadow: ['0 0 20px rgba(239,68,68,0.5)', '0 0 40px rgba(239,68,68,0.8)', '0 0 20px rgba(239,68,68,0.5)'] }}
-                            transition={{ duration: 2, repeat: Infinity }}
                         >Aulas Black</motion.span>
                     </h2>
 
-                    <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                        O <span className="text-primary font-semibold">Método Black</span> para você sair de um
-                        <span className="text-white font-semibold"> lojista</span> para um
-                        <span className="text-red-400 font-semibold"> fornecedor real</span>.
-                        Usando nossa IA + nossos fornecedores exclusivos.
+                    <p className="text-muted-foreground text-base max-w-lg mx-auto">
+                        De <span className="text-white font-semibold">lojista</span> a{" "}
+                        <span className="text-red-400 font-semibold">fornecedor real</span> com IA + fornecedores exclusivos
                     </p>
                 </motion.div>
 
-                {/* Modules Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
-                    {modules.map((module, index) => (
-                        <motion.div
-                            key={module.num}
-                            className="glass-card p-6 relative overflow-hidden group"
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                            whileHover={{ y: -5, scale: 1.02 }}
-                            animate={{ borderColor: ['rgba(239,68,68,0.1)', 'rgba(239,68,68,0.3)', 'rgba(239,68,68,0.1)'] }}
-                        >
-                            {/* Shine effect */}
-                            <motion.div
-                                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"
-                                animate={{ x: ['-200%', '200%'] }}
-                                transition={{ duration: 3, repeat: Infinity, delay: index * 0.3 }}
-                            />
-
-                            {/* Module Number */}
-                            <motion.span
-                                className="text-5xl font-black text-red-500/20 absolute top-4 right-4"
-                                animate={{ opacity: [0.2, 0.4, 0.2] }}
-                                transition={{ duration: 3, repeat: Infinity }}
-                            >
-                                {module.num}
-                            </motion.span>
-
-                            {/* Icon */}
-                            <motion.div
-                                className="w-12 h-12 rounded-xl bg-gradient-to-br from-red-500/20 to-orange-500/20 border border-red-500/30 flex items-center justify-center mb-4"
-                                animate={{ rotate: [0, 5, -5, 0] }}
-                                transition={{ duration: 4, repeat: Infinity, delay: index * 0.2 }}
-                            >
-                                <module.icon className="w-6 h-6 text-red-400" />
-                            </motion.div>
-
-                            <h3 className="font-bold text-white text-lg mb-2">{module.title}</h3>
-                            <p className="text-muted-foreground text-sm">{module.desc}</p>
-
-                            {/* Play button on hover */}
-                            <motion.div
-                                className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity"
-                            >
-                                <div className="w-10 h-10 rounded-full bg-red-500 flex items-center justify-center">
-                                    <Play className="w-5 h-5 text-white fill-white" />
-                                </div>
-                            </motion.div>
-
-                            {/* Glow */}
-                            <motion.div
-                                className="absolute -bottom-10 -right-10 w-24 h-24 bg-red-500/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity"
-                            />
-                        </motion.div>
-                    ))}
-                </div>
-
-                {/* Bottom Text */}
+                {/* Visual Timeline/Steps - Horizontal */}
                 <motion.div
-                    className="text-center mt-12"
-                    initial={{ opacity: 0, y: 20 }}
+                    className="relative max-w-4xl mx-auto"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                >
+                    {/* Connecting Line */}
+                    <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-red-500/30 to-transparent -translate-y-1/2" />
+                    <motion.div
+                        className="hidden md:block absolute top-1/2 left-0 h-0.5 bg-gradient-to-r from-red-500 to-orange-500 -translate-y-1/2"
+                        initial={{ width: "0%" }}
+                        whileInView={{ width: "100%" }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1.5, ease: "easeOut" }}
+                    />
+
+                    {/* Steps */}
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                        {steps.map((step, index) => (
+                            <motion.div
+                                key={step.num}
+                                className="relative flex flex-col items-center text-center group"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.15 }}
+                            >
+                                {/* Icon Circle */}
+                                <motion.div
+                                    className="relative w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-zinc-900 to-zinc-800 border-2 border-red-500/40 flex items-center justify-center mb-3 group-hover:border-red-500 transition-colors cursor-pointer"
+                                    whileHover={{ scale: 1.1 }}
+                                    animate={{
+                                        boxShadow: [
+                                            '0 0 0px rgba(239,68,68,0.3)',
+                                            '0 0 20px rgba(239,68,68,0.5)',
+                                            '0 0 0px rgba(239,68,68,0.3)'
+                                        ]
+                                    }}
+                                    transition={{ duration: 3, repeat: 9999, delay: index * 0.5 }}
+                                >
+                                    {/* Inner glow */}
+                                    <div className="absolute inset-2 rounded-full bg-gradient-to-br from-red-500/20 to-orange-500/10" />
+
+                                    <step.icon className="w-7 h-7 md:w-8 md:h-8 text-red-400 relative z-10" />
+
+                                    {/* Step number badge */}
+                                    <span className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-red-500 text-white text-xs font-bold flex items-center justify-center">
+                                        {step.num}
+                                    </span>
+
+                                    {/* Play overlay on hover */}
+                                    <motion.div
+                                        className="absolute inset-0 rounded-full bg-red-500/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                                    >
+                                        <Play className="w-6 h-6 text-white fill-white" />
+                                    </motion.div>
+                                </motion.div>
+
+                                {/* Title */}
+                                <h3 className="font-bold text-white text-sm md:text-base">
+                                    {step.title}
+                                </h3>
+                            </motion.div>
+                        ))}
+                    </div>
+                </motion.div>
+
+                {/* Bottom CTA */}
+                <motion.div
+                    className="text-center mt-10"
+                    initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.5 }}
+                    transition={{ delay: 0.6 }}
                 >
-                    <motion.p
-                        className="inline-flex items-center gap-2 text-muted-foreground"
-                        animate={{ opacity: [0.7, 1, 0.7] }}
-                        transition={{ duration: 2, repeat: Infinity }}
+                    <motion.div
+                        className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-gradient-to-r from-red-500/10 to-orange-500/10 border border-red-500/20"
+                        animate={{ borderColor: ['rgba(239,68,68,0.2)', 'rgba(239,68,68,0.5)', 'rgba(239,68,68,0.2)'] }}
+                        transition={{ duration: 2, repeat: 9999 }}
                     >
                         <Rocket className="w-5 h-5 text-red-400" />
-                        Em <span className="text-white font-semibold">4 meses</span> você pode virar fornecedor real
-                    </motion.p>
+                        <span className="text-white text-sm font-medium">
+                            Em <span className="text-red-400 font-bold">4 meses</span> você vira fornecedor
+                        </span>
+                        <ArrowRight className="w-4 h-4 text-red-400" />
+                    </motion.div>
                 </motion.div>
             </div>
         </section>

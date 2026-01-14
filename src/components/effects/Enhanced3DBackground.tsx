@@ -30,7 +30,7 @@ const Icon3D = ({
             transition={{
                 duration: 8 + Math.random() * 4,
                 delay: delay,
-                repeat: Infinity,
+                repeat: 9999,
                 ease: "easeInOut",
             }}
             style={{
@@ -74,7 +74,7 @@ const Icon3D = ({
                     }}
                     transition={{
                         duration: 3,
-                        repeat: Infinity,
+                        repeat: 9999,
                     }}
                 />
             </div>
@@ -129,7 +129,7 @@ const FloatingOrb = ({ className, color, size, delay }: { className: string; col
         transition={{
             duration: 10 + Math.random() * 5,
             delay: delay,
-            repeat: Infinity,
+            repeat: 9999,
             ease: "easeInOut",
         }}
     />
@@ -227,7 +227,7 @@ const Enhanced3DBackground = () => {
                 }}
                 transition={{
                     duration: 15,
-                    repeat: Infinity,
+                    repeat: 9999,
                     ease: "linear",
                 }}
             />

@@ -59,7 +59,7 @@ const Confianca = () => {
             <motion.div
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-green-500/5 rounded-full blur-3xl"
                 animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.4, 0.2] }}
-                transition={{ duration: 5, repeat: Infinity }}
+                transition={{ duration: 5, repeat: 9999 }}
             />
 
             <div className="container mx-auto px-4 relative z-10">
@@ -73,7 +73,7 @@ const Confianca = () => {
                     <motion.div
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/30 text-green-400 text-sm font-bold mb-6"
                         animate={{ boxShadow: ['0 0 0px rgba(34,197,94,0)', '0 0 20px rgba(34,197,94,0.5)', '0 0 0px rgba(34,197,94,0)'] }}
-                        transition={{ duration: 2, repeat: Infinity }}
+                        transition={{ duration: 2, repeat: 9999 }}
                     >
                         <Shield className="w-4 h-4" />
                         CONFIANÇA GARANTIDA
@@ -83,7 +83,7 @@ const Confianca = () => {
                         <motion.span
                             className="bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent"
                             animate={{ textShadow: ['0 0 20px rgba(34,197,94,0.5)', '0 0 40px rgba(34,197,94,0.8)', '0 0 20px rgba(34,197,94,0.5)'] }}
-                            transition={{ duration: 2, repeat: Infinity }}
+                            transition={{ duration: 2, repeat: 9999 }}
                         >100%</motion.span>
                         <span className="text-white"> Confiável</span>
                     </h2>
@@ -106,14 +106,14 @@ const Confianca = () => {
                         <motion.div
                             className="absolute inset-0 bg-gradient-to-r from-transparent via-green-500/10 to-transparent"
                             animate={{ x: ['-100%', '200%'] }}
-                            transition={{ duration: 3, repeat: Infinity, repeatDelay: 2 }}
+                            transition={{ duration: 3, repeat: 9999, repeatDelay: 2 }}
                         />
 
                         <div className="flex items-start gap-4">
                             <motion.div
                                 className="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500/30 to-emerald-500/30 border border-green-500/50 flex items-center justify-center"
                                 animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.1, 1] }}
-                                transition={{ duration: 4, repeat: Infinity }}
+                                transition={{ duration: 4, repeat: 9999 }}
                             >
                                 <MessageCircle className="w-7 h-7 text-green-400" />
                             </motion.div>
@@ -123,7 +123,7 @@ const Confianca = () => {
                                     <motion.span
                                         className="inline-flex items-center px-2 py-1 rounded-full bg-green-500/20 text-green-400 text-xs font-bold"
                                         animate={{ scale: [1, 1.1, 1] }}
-                                        transition={{ duration: 1.5, repeat: Infinity }}
+                                        transition={{ duration: 1.5, repeat: 9999 }}
                                     >
                                         <Bell className="w-3 h-3 mr-1" />
                                         ATIVO
@@ -185,6 +185,8 @@ const Confianca = () => {
                                         src={group.image}
                                         alt={group.name}
                                         fill
+                                        loading="lazy"
+                                        sizes="(max-width: 768px) 50vw, 25vw"
                                         className="object-cover object-top transition-transform duration-500 group-hover:scale-110"
                                     />
 
@@ -195,7 +197,7 @@ const Confianca = () => {
                                     <motion.div
                                         className="absolute inset-0 bg-gradient-to-b from-transparent via-green-500/10 to-transparent h-20"
                                         animate={{ y: ['-100%', '500%'] }}
-                                        transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
+                                        transition={{ duration: 3, repeat: 9999, ease: 'linear' }}
                                     />
                                 </div>
 
@@ -205,7 +207,7 @@ const Confianca = () => {
                                         <motion.div
                                             className="w-2 h-2 rounded-full bg-green-500"
                                             animate={{ scale: [1, 1.5, 1], opacity: [1, 0.5, 1] }}
-                                            transition={{ duration: 1, repeat: Infinity }}
+                                            transition={{ duration: 1, repeat: 9999 }}
                                         />
                                         <span className="text-green-400 text-xs font-bold uppercase tracking-wider">Grupo Ativo</span>
                                     </div>
@@ -239,7 +241,7 @@ const Confianca = () => {
                                     }}
                                     transition={{
                                         duration: 2 + i * 0.5,
-                                        repeat: Infinity,
+                                        repeat: 9999,
                                         delay: index * 0.2 + i * 0.3,
                                     }}
                                 />
@@ -249,42 +251,46 @@ const Confianca = () => {
                 </div>
 
                 {/* Trust Points Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 max-w-5xl mx-auto">
                     {trustPoints.map((point, index) => (
                         <motion.div
                             key={point.title}
-                            className="glass-card p-6 text-center group relative"
+                            className="glass-card p-4 text-center group relative overflow-hidden flex flex-col items-center justify-center gap-2"
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
                             whileHover={{ y: -5, scale: 1.02 }}
-                            animate={{ borderColor: ['rgba(34,197,94,0.1)', 'rgba(34,197,94,0.3)', 'rgba(34,197,94,0.1)'] }}
+                            style={{
+                                background: 'linear-gradient(145deg, rgba(34,197,94,0.05) 0%, rgba(0,0,0,0.4) 100%)',
+                                borderColor: 'rgba(34,197,94,0.15)'
+                            }}
+                            animate={{ borderColor: ['rgba(34,197,94,0.15)', 'rgba(34,197,94,0.3)', 'rgba(34,197,94,0.15)'] }}
                         >
                             {/* Icon */}
                             <motion.div
-                                className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-green-500/20 to-emerald-500/20 border border-green-500/30 flex items-center justify-center mb-4"
+                                className="w-12 h-12 mx-auto rounded-xl bg-gradient-to-br from-green-500/20 to-emerald-500/20 border border-green-500/30 flex items-center justify-center mb-1 group-hover:bg-green-500/30 transition-colors"
                                 animate={{ rotate: [0, 5, -5, 0], y: [0, -3, 0] }}
-                                transition={{ duration: 4, repeat: Infinity, delay: index * 0.2 }}
+                                transition={{ duration: 4, repeat: 9999, delay: index * 0.2 }}
                             >
-                                <point.icon className="w-8 h-8 text-green-400" />
+                                <point.icon className="w-6 h-6 text-green-400" />
                             </motion.div>
 
-                            <h3 className="font-bold text-white text-lg mb-2">{point.title}</h3>
-                            <p className="text-muted-foreground text-sm">{point.desc}</p>
+                            <h3 className="font-bold text-white text-sm md:text-base leading-tight">{point.title}</h3>
+                            <p className="text-muted-foreground text-xs leading-relaxed max-w-[90%]">{point.desc}</p>
 
                             {/* Check badge */}
                             <motion.div
-                                className="absolute top-4 right-4 w-6 h-6 rounded-full bg-green-500 flex items-center justify-center"
+                                className="absolute top-2 right-2 w-5 h-5 rounded-full bg-green-500 flex items-center justify-center z-10"
                                 animate={{ scale: [1, 1.2, 1] }}
-                                transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
+                                transition={{ duration: 2, repeat: 9999, delay: index * 0.3 }}
                             >
-                                <CheckCircle className="w-4 h-4 text-white" />
+                                <CheckCircle className="w-3 h-3 text-white" />
                             </motion.div>
 
                             {/* Glow */}
                             <motion.div
-                                className="absolute -bottom-5 left-1/2 -translate-x-1/2 w-24 h-24 bg-green-500/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity"
+                                className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-20 h-20 bg-green-500/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity"
                             />
                         </motion.div>
                     ))}
@@ -301,9 +307,9 @@ const Confianca = () => {
                     <motion.div
                         className="inline-flex items-center gap-3 px-6 py-4 glass-card"
                         animate={{ borderColor: ['rgba(34,197,94,0.2)', 'rgba(34,197,94,0.5)', 'rgba(34,197,94,0.2)'] }}
-                        transition={{ duration: 3, repeat: Infinity }}
+                        transition={{ duration: 3, repeat: 9999 }}
                     >
-                        <motion.div animate={{ rotate: [0, 360] }} transition={{ duration: 5, repeat: Infinity, ease: "linear" }}>
+                        <motion.div animate={{ rotate: [0, 360] }} transition={{ duration: 5, repeat: 9999, ease: "linear" }}>
                             <Shield className="w-8 h-8 text-green-400" />
                         </motion.div>
                         <div className="text-left">
