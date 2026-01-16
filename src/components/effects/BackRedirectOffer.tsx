@@ -6,74 +6,95 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Gift, Clock, ArrowRight, X, Sparkles, Zap, Shield, CheckCircle, AlertTriangle } from 'lucide-react';
 
 const STORAGE_KEY = 'blackshoppe_back_offer';
-const CHECKOUT_URL = 'https://www.ggcheckout.com/checkout/v4/rpU6SEztCV3PJcXZTcsm';
+const VISITED_KEY = 'blackshoppe_visited';
+const CHECKOUT_URL = 'https://www.ggcheckout.com/checkout/v4/3AsfT7M1Zdr6WmhiEHdo';
 
 export const BackRedirectOffer = () => {
     const [showOffer, setShowOffer] = useState(false);
-    const [hasLeftPage, setHasLeftPage] = useState(false);
     const [countdown, setCountdown] = useState(300); // 5 minutos
 
-    // Verifica se o usuário já tem o desconto ativo
     useEffect(() => {
-        const stored = localStorage.getItem(STORAGE_KEY);
-        if (stored) {
-            const data = JSON.parse(stored);
-            if (data.active && data.expiresAt > Date.now()) {
-                setHasLeftPage(true);
-                setCountdown(Math.floor((data.expiresAt - Date.now()) / 1000));
-            }
-        }
-    }, []);
+        // Verifica se já mostrou a oferta antes
+        const alreadyShown = sessionStorage.getItem(STORAGE_KEY);
 
-    // Detecta quando o usuário sai e volta para a página
-    useEffect(() => {
+        // Verifica se a pessoa já visitou a página antes (em outra sessão também)
+        const hasVisited = localStorage.getItem(VISITED_KEY);
+
+        if (hasVisited && !alreadyShown) {
+            // Pessoa já visitou antes e está voltando - mostrar oferta imediatamente
+            setTimeout(() => {
+                setShowOffer(true);
+                sessionStorage.setItem(STORAGE_KEY, 'shown');
+            }, 500); // Pequeno delay para parecer mais natural
+        }
+
+        // Marca que visitou a página
+        localStorage.setItem(VISITED_KEY, 'true');
+
+        // Detecta quando a pessoa tenta sair da página
+        const handleBeforeUnload = () => {
+            // Marca que a pessoa saiu
+            localStorage.setItem(VISITED_KEY, 'left');
+        };
+
+        // Detecta quando a aba fica oculta (pessoa muda de aba, minimiza, etc)
         const handleVisibilityChange = () => {
             if (document.visibilityState === 'hidden') {
-                // Usuário saiu da aba
-                const stored = localStorage.getItem(STORAGE_KEY);
-                if (!stored) {
-                    localStorage.setItem(STORAGE_KEY, JSON.stringify({
-                        leftAt: Date.now(),
-                        shown: false
-                    }));
-                }
+                // Pessoa saiu da aba
+                localStorage.setItem(VISITED_KEY, 'left');
             } else if (document.visibilityState === 'visible') {
-                // Usuário voltou para a aba
-                const stored = localStorage.getItem(STORAGE_KEY);
-                if (stored) {
-                    const data = JSON.parse(stored);
-                    if (!data.shown && !data.active) {
-                        // Primeira vez voltando - mostrar oferta
-                        setShowOffer(true);
-                        setHasLeftPage(true);
+                // Pessoa voltou para a aba
+                const wasLeft = localStorage.getItem(VISITED_KEY) === 'left';
+                const wasShown = sessionStorage.getItem(STORAGE_KEY);
 
-                        // Ativar desconto por 5 minutos
-                        const expiresAt = Date.now() + (5 * 60 * 1000);
-                        localStorage.setItem(STORAGE_KEY, JSON.stringify({
-                            active: true,
-                            shown: true,
-                            expiresAt: expiresAt
-                        }));
-                        setCountdown(300);
-                    }
+                if (wasLeft && !wasShown) {
+                    setShowOffer(true);
+                    sessionStorage.setItem(STORAGE_KEY, 'shown');
                 }
             }
         };
 
+        // Detecta o botão voltar do navegador
+        const handlePopState = () => {
+            const wasShown = sessionStorage.getItem(STORAGE_KEY);
+            if (!wasShown) {
+                setShowOffer(true);
+                sessionStorage.setItem(STORAGE_KEY, 'shown');
+            }
+        };
+
+        // Detecta quando a página é mostrada novamente (back/forward cache)
+        const handlePageShow = (event: PageTransitionEvent) => {
+            if (event.persisted) {
+                // Página foi restaurada do cache (botão voltar)
+                const wasShown = sessionStorage.getItem(STORAGE_KEY);
+                if (!wasShown) {
+                    setShowOffer(true);
+                    sessionStorage.setItem(STORAGE_KEY, 'shown');
+                }
+            }
+        };
+
+        window.addEventListener('beforeunload', handleBeforeUnload);
         document.addEventListener('visibilitychange', handleVisibilityChange);
-        return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+        window.addEventListener('popstate', handlePopState);
+        window.addEventListener('pageshow', handlePageShow);
+
+        return () => {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+            document.removeEventListener('visibilitychange', handleVisibilityChange);
+            window.removeEventListener('popstate', handlePopState);
+            window.removeEventListener('pageshow', handlePageShow);
+        };
     }, []);
 
     // Countdown timer
     useEffect(() => {
-        if (!hasLeftPage || countdown <= 0) return;
+        if (!showOffer || countdown <= 0) return;
 
         const timer = setInterval(() => {
             setCountdown(prev => {
                 if (prev <= 1) {
-                    // Tempo expirou - remover desconto
-                    localStorage.removeItem(STORAGE_KEY);
-                    setHasLeftPage(false);
                     return 0;
                 }
                 return prev - 1;
@@ -81,7 +102,7 @@ export const BackRedirectOffer = () => {
         }, 1000);
 
         return () => clearInterval(timer);
-    }, [hasLeftPage, countdown]);
+    }, [showOffer, countdown]);
 
     const formatTime = (seconds: number) => {
         const mins = Math.floor(seconds / 60);
@@ -201,7 +222,8 @@ export const BackRedirectOffer = () => {
                             </h2>
 
                             <p className="text-lg text-white/90 mb-4">
-                                Você ganhou <span className="text-green-400 font-black">R$10 DE DESCONTO</span> extra!
+                                Que bom que você voltou! Ganhamos sua atenção e por isso você ganhou{' '}
+                                <span className="text-green-400 font-black">R$10 DE DESCONTO</span>!
                             </p>
 
                             {/* Price comparison */}
@@ -297,7 +319,7 @@ export const BackRedirectOffer = () => {
 
                             {/* Subtext */}
                             <p className="text-muted-foreground text-xs mt-4">
-                                ⚡ Oferta válida apenas para quem voltar agora
+                                ⚡ Oferta válida apenas por tempo limitado
                             </p>
                         </div>
                     </motion.div>
