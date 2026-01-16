@@ -13,6 +13,12 @@ const OrangeParticlesBackground = dynamic(
   { ssr: false }
 );
 
+// Back Redirect Offer - carregado dinamicamente
+const BackRedirectOffer = dynamic(
+  () => import('@/components/effects/BackRedirectOffer').then(mod => ({ default: mod.BackRedirectOffer })),
+  { ssr: false }
+);
+
 // Componentes não-críticos - lazy loaded para melhor performance
 const IAMineradora = dynamic(() => import('@/components/page/ia-mineradora'), {
   loading: () => <div className="min-h-[400px]" />,
@@ -63,6 +69,9 @@ export default function Home() {
     <div className="flex flex-col min-h-screen relative">
       {/* Clean Orange Particles Background - SSR disabled for performance */}
       <OrangeParticlesBackground />
+
+      {/* Back Redirect Offer - detecta quando usuário sai e volta */}
+      <BackRedirectOffer />
 
       <main className="flex-1 relative z-10">
         {/* Critical above-the-fold content */}
