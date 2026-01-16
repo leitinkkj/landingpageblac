@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, Quote, MessageCircle, ThumbsUp, Sparkles, CheckCircle, X, Send, Clock, Heart, Reply, ChevronDown } from 'lucide-react';
 import { AnimatedParticles, FloatingIcon, ScanLine } from '@/components/effects/VisualEffects';
@@ -598,13 +599,27 @@ const Feedback = () => {
                 Adquira o acesso para comentar sobre o painel e interagir com a comunidade!
               </p>
               <div className="flex flex-col gap-3">
-                <motion.button
-                  className="w-full px-6 py-3 rounded-xl bg-gradient-to-r from-primary to-orange-600 text-white font-bold hover:shadow-lg hover:shadow-primary/30 transition-all"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                <Link
+                  href="https://www.ggcheckout.com/checkout/v4/rpU6SEztCV3PJcXZTcsm"
+                  onClick={() => {
+                    if (typeof window !== 'undefined' && (window as any).fbq) {
+                      (window as any).fbq('track', 'InitiateCheckout', {
+                        content_name: 'Black Shoppe - Acesso Completo',
+                        content_category: 'Produto Digital',
+                        value: 47.00,
+                        currency: 'BRL'
+                      });
+                    }
+                  }}
                 >
-                  Quero Ter Acesso
-                </motion.button>
+                  <motion.button
+                    className="w-full px-6 py-3 rounded-xl bg-gradient-to-r from-primary to-orange-600 text-white font-bold hover:shadow-lg hover:shadow-primary/30 transition-all"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    Quero Ter Acesso
+                  </motion.button>
+                </Link>
                 <button
                   onClick={() => setShowAccessAlert(false)}
                   className="text-muted-foreground hover:text-white transition-colors text-sm"
