@@ -7,7 +7,7 @@ import { Gift, Clock, ArrowRight, X, Sparkles, Zap, Shield, CheckCircle, AlertTr
 
 const STORAGE_KEY = 'blackshoppe_back_offer';
 const VISITED_KEY = 'blackshoppe_visited';
-const CHECKOUT_URL = 'https://www.ggcheckout.com/checkout/v4/rpU6SEztCV3PJcXZTcsm';
+const CHECKOUT_URL = 'https://www.ggcheckout.com/checkout/v4/3AsfT7M1Zdr6WmhiEHdo';
 
 export const BackRedirectOffer = () => {
     const [showOffer, setShowOffer] = useState(false);
