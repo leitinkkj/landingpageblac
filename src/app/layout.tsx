@@ -63,17 +63,7 @@ export default function RootLayout({
         <link
           href="https://fonts.googleapis.com/css2?family=Anton&display=swap"
           rel="stylesheet"
-          // @ts-ignore - media attribute for non-blocking load
-          media="print"
-          // @ts-ignore
-          onLoad="this.media='all'"
         />
-        <noscript>
-          <link
-            href="https://fonts.googleapis.com/css2?family=Anton&display=swap"
-            rel="stylesheet"
-          />
-        </noscript>
       </head>
       <body className={poppins.className} style={{ fontFamily: 'var(--font-poppins), system-ui, sans-serif' }}>
         {children}
