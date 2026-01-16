@@ -30,10 +30,10 @@ const Hero = () => {
   ];
 
   const stats = [
-    { value: "2.8K+", icon: Users, color: "text-blue-400" },
-    { value: "R$2.4M", icon: TrendingUp, color: "text-green-400" },
-    { value: "4.9", icon: Star, color: "text-yellow-400" },
-    { value: "70%", icon: Percent, color: "text-primary" },
+    { value: "2.8K+", icon: Users, color: "text-blue-400", gradient: "from-blue-500 to-cyan-500", glow: "rgba(59,130,246,0.6)" },
+    { value: "R$2.4M", icon: TrendingUp, color: "text-green-400", gradient: "from-green-500 to-emerald-500", glow: "rgba(34,197,94,0.6)" },
+    { value: "4.9", icon: Star, color: "text-yellow-400", gradient: "from-yellow-500 to-amber-500", glow: "rgba(234,179,8,0.6)" },
+    { value: "70%", icon: Percent, color: "text-primary", gradient: "from-primary to-red-500", glow: "rgba(249,115,22,0.6)" },
   ];
 
   return (
@@ -191,17 +191,61 @@ const Hero = () => {
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.6 + i * 0.1, type: "spring" }}
-                whileHover={{ scale: 1.1, y: -5 }}
+                whileHover={{ scale: 1.15, y: -8 }}
               >
+                {/* Glow effect behind card */}
                 <motion.div
-                  className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-black/60 backdrop-blur-xl border border-white/10 flex flex-col items-center justify-center gap-1"
+                  className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${stat.gradient} blur-xl opacity-0 group-hover:opacity-60`}
                   animate={{
-                    borderColor: ['rgba(255,255,255,0.1)', 'rgba(255,255,255,0.3)', 'rgba(255,255,255,0.1)']
+                    opacity: [0.2, 0.4, 0.2],
+                    scale: [1, 1.2, 1]
                   }}
-                  transition={{ duration: 3, repeat: 9999, delay: i * 0.3 }}
+                  transition={{ duration: 2, repeat: 9999, delay: i * 0.3 }}
+                />
+
+                <motion.div
+                  className={`relative w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br ${stat.gradient} p-[2px] overflow-hidden`}
+                  animate={{
+                    boxShadow: [
+                      `0 0 15px ${stat.glow}`,
+                      `0 0 30px ${stat.glow}`,
+                      `0 0 15px ${stat.glow}`
+                    ]
+                  }}
+                  transition={{ duration: 2, repeat: 9999, delay: i * 0.3 }}
                 >
-                  <stat.icon className={`w-5 h-5 md:w-6 md:h-6 ${stat.color}`} />
-                  <span className="text-white font-black text-sm md:text-base">{stat.value}</span>
+                  {/* Inner card */}
+                  <div className="w-full h-full rounded-2xl bg-black/80 backdrop-blur-xl flex flex-col items-center justify-center gap-1">
+                    <motion.div
+                      animate={{
+                        scale: [1, 1.2, 1],
+                        rotate: [0, 5, -5, 0]
+                      }}
+                      transition={{ duration: 2, repeat: 9999, delay: i * 0.2 }}
+                    >
+                      <stat.icon className={`w-5 h-5 md:w-6 md:h-6 ${stat.color} drop-shadow-lg`} />
+                    </motion.div>
+                    <motion.span
+                      className="text-white font-black text-sm md:text-base"
+                      animate={{
+                        textShadow: [
+                          `0 0 10px ${stat.glow}`,
+                          `0 0 20px ${stat.glow}`,
+                          `0 0 10px ${stat.glow}`
+                        ]
+                      }}
+                      transition={{ duration: 2, repeat: 9999, delay: i * 0.3 }}
+                    >
+                      {stat.value}
+                    </motion.span>
+                  </div>
+
+                  {/* Shine effect */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                    animate={{ x: ['-200%', '200%'] }}
+                    transition={{ duration: 2, repeat: 9999, delay: i * 0.5, repeatDelay: 1 }}
+                  />
                 </motion.div>
               </motion.div>
             ))}
@@ -214,14 +258,35 @@ const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8 }}
           >
-            {[ShoppingBag, Package, Truck, Tag, Percent, Crown].map((Icon, i) => (
+            {[
+              { icon: ShoppingBag, gradient: "from-orange-500 to-red-500", glow: "rgba(249,115,22,0.5)" },
+              { icon: Package, gradient: "from-blue-500 to-cyan-500", glow: "rgba(59,130,246,0.5)" },
+              { icon: Truck, gradient: "from-purple-500 to-pink-500", glow: "rgba(168,85,247,0.5)" },
+              { icon: Tag, gradient: "from-yellow-500 to-orange-500", glow: "rgba(234,179,8,0.5)" },
+              { icon: Percent, gradient: "from-green-500 to-emerald-500", glow: "rgba(34,197,94,0.5)" },
+              { icon: Crown, gradient: "from-amber-500 to-yellow-500", glow: "rgba(245,158,11,0.5)" },
+            ].map((item, i) => (
               <motion.div
                 key={i}
-                className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/80 to-orange-600/80 flex items-center justify-center"
-                animate={{ y: [0, -5, 0], rotate: [0, 5, -5, 0] }}
+                className={`w-11 h-11 rounded-xl bg-gradient-to-br ${item.gradient} flex items-center justify-center shadow-lg`}
+                animate={{
+                  y: [0, -8, 0],
+                  rotate: [0, 8, -8, 0],
+                  boxShadow: [
+                    `0 4px 15px ${item.glow}`,
+                    `0 8px 30px ${item.glow}`,
+                    `0 4px 15px ${item.glow}`
+                  ]
+                }}
                 transition={{ duration: 2 + i * 0.2, repeat: 9999, delay: i * 0.15 }}
+                whileTap={{ scale: 0.9 }}
               >
-                <Icon className="w-5 h-5 text-white" />
+                <motion.div
+                  animate={{ scale: [1, 1.15, 1] }}
+                  transition={{ duration: 1.5, repeat: 9999, delay: i * 0.1 }}
+                >
+                  <item.icon className="w-5 h-5 text-white drop-shadow-md" />
+                </motion.div>
               </motion.div>
             ))}
           </motion.div>
@@ -234,19 +299,47 @@ const Hero = () => {
             transition={{ delay: 0.9 }}
           >
             {[
-              { icon: Shield, color: "text-green-400" },
-              { icon: Clock, color: "text-blue-400" },
-              { icon: Heart, color: "text-red-400" },
+              { icon: Shield, color: "text-green-400", gradient: "from-green-500 to-emerald-500", glow: "rgba(34,197,94,0.5)" },
+              { icon: Clock, color: "text-blue-400", gradient: "from-blue-500 to-cyan-500", glow: "rgba(59,130,246,0.5)" },
+              { icon: Heart, color: "text-red-400", gradient: "from-red-500 to-pink-500", glow: "rgba(239,68,68,0.5)" },
             ].map((item, i) => (
               <motion.div
                 key={i}
-                className="flex items-center justify-center"
-                animate={{ scale: [1, 1.1, 1] }}
+                className="relative flex items-center justify-center"
+                animate={{ scale: [1, 1.15, 1] }}
                 transition={{ duration: 2, repeat: 9999, delay: i * 0.3 }}
+                whileHover={{ scale: 1.3 }}
               >
-                <div className={`w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center`}>
-                  <item.icon className={`w-4 h-4 md:w-5 md:h-5 ${item.color}`} />
-                </div>
+                {/* Glow ring */}
+                <motion.div
+                  className={`absolute inset-0 rounded-full bg-gradient-to-br ${item.gradient} blur-md`}
+                  animate={{
+                    opacity: [0.3, 0.6, 0.3],
+                    scale: [1, 1.3, 1]
+                  }}
+                  transition={{ duration: 2, repeat: 9999, delay: i * 0.3 }}
+                />
+
+                <motion.div
+                  className={`relative w-9 h-9 md:w-11 md:h-11 rounded-full bg-gradient-to-br ${item.gradient} p-[2px]`}
+                  animate={{
+                    boxShadow: [
+                      `0 0 10px ${item.glow}`,
+                      `0 0 25px ${item.glow}`,
+                      `0 0 10px ${item.glow}`
+                    ]
+                  }}
+                  transition={{ duration: 2, repeat: 9999, delay: i * 0.3 }}
+                >
+                  <div className="w-full h-full rounded-full bg-black/80 flex items-center justify-center">
+                    <motion.div
+                      animate={{ rotate: [0, 10, -10, 0] }}
+                      transition={{ duration: 3, repeat: 9999, delay: i * 0.2 }}
+                    >
+                      <item.icon className={`w-4 h-4 md:w-5 md:h-5 ${item.color} drop-shadow-lg`} />
+                    </motion.div>
+                  </div>
+                </motion.div>
               </motion.div>
             ))}
           </motion.div>
