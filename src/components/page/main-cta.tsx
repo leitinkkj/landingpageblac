@@ -86,7 +86,7 @@ const MainCTA = () => {
                         >
                             <AlertCircle className="w-5 h-5 text-red-400" />
                         </motion.div>
-                        <span className="text-red-400 font-bold text-sm md:text-base">⚡ OFERTA POR TEMPO LIMITADO</span>
+                        <span className="text-red-400 font-bold text-sm md:text-base">⚡ OFERTA DE COMEÇO DE ANO</span>
                         <motion.div
                             animate={{ scale: [1, 1.2, 1] }}
                             transition={{ duration: 1, repeat: 9999 }}
@@ -195,7 +195,7 @@ const MainCTA = () => {
                                 </motion.div>
                                 <div>
                                     <p className="text-green-400 font-bold text-lg">Valor total: R$ 2.847,00</p>
-                                    <p className="text-muted-foreground text-sm">Tudo isso por apenas <span className="text-white font-bold">R$ 67</span> (economia de 97%)</p>
+                                    <p className="text-muted-foreground text-sm">Tudo isso por apenas <span className="text-white font-bold">R$ 47</span> (economia de 98%)</p>
                                 </div>
                             </div>
                         </motion.div>
@@ -269,7 +269,7 @@ const MainCTA = () => {
                                             animate={{ scale: [1, 1.05, 1] }}
                                             transition={{ duration: 1, repeat: 9999 }}
                                         >
-                                            <span className="text-white font-black text-lg">-81% OFF</span>
+                                            <span className="text-white font-black text-lg">-87% OFF</span>
                                         </motion.div>
                                     </div>
 
@@ -286,7 +286,7 @@ const MainCTA = () => {
                                                 }}
                                                 transition={{ duration: 2, repeat: 9999 }}
                                             >
-                                                67
+                                                47
                                             </motion.span>
                                         </div>
                                         <motion.div
@@ -307,7 +307,7 @@ const MainCTA = () => {
                                                 (window as any).fbq('track', 'InitiateCheckout', {
                                                     content_name: 'Black Shoppe - Acesso Completo',
                                                     content_category: 'Produto Digital',
-                                                    value: 67.00,
+                                                    value: 47.00,
                                                     currency: 'BRL'
                                                 });
                                             }
