@@ -14,74 +14,56 @@ export const BackRedirectOffer = () => {
     const [countdown, setCountdown] = useState(300); // 5 minutos
 
     useEffect(() => {
-        // Verifica se já mostrou a oferta antes
-        const alreadyShown = sessionStorage.getItem(STORAGE_KEY);
+        // Verifica quando a oferta foi mostrada pela última vez
+        const lastShownTime = localStorage.getItem(STORAGE_KEY + '_timestamp');
+        const COOLDOWN = 60 * 60 * 1000; // 1 hora de intervalo entre exibições
 
-        // Verifica se a pessoa já visitou a página antes (em outra sessão também)
-        const hasVisited = localStorage.getItem(VISITED_KEY);
+        const canShowOffer = () => {
+            const now = Date.now();
+            if (!lastShownTime) return true;
+            return (now - parseInt(lastShownTime)) > COOLDOWN;
+        };
 
-        if (hasVisited && !alreadyShown) {
-            // Pessoa já visitou antes e está voltando - mostrar oferta imediatamente
-            setTimeout(() => {
+        const triggerOffer = () => {
+            if (canShowOffer()) {
                 setShowOffer(true);
-                sessionStorage.setItem(STORAGE_KEY, 'shown');
-            }, 500); // Pequeno delay para parecer mais natural
-        }
-
-        // Marca que visitou a página
-        localStorage.setItem(VISITED_KEY, 'true');
-
-        // Detecta quando a pessoa tenta sair da página
-        const handleBeforeUnload = () => {
-            // Marca que a pessoa saiu
-            localStorage.setItem(VISITED_KEY, 'left');
+                localStorage.setItem(STORAGE_KEY + '_timestamp', Date.now().toString());
+            }
         };
 
         // Detecta quando a aba fica oculta (pessoa muda de aba, minimiza, etc)
         const handleVisibilityChange = () => {
             if (document.visibilityState === 'hidden') {
-                // Pessoa saiu da aba
-                localStorage.setItem(VISITED_KEY, 'left');
+                // Pessoa saiu da aba - prepara para mostrar quando voltar
+                sessionStorage.setItem('temp_left', 'true');
             } else if (document.visibilityState === 'visible') {
                 // Pessoa voltou para a aba
-                const wasLeft = localStorage.getItem(VISITED_KEY) === 'left';
-                const wasShown = sessionStorage.getItem(STORAGE_KEY);
-
-                if (wasLeft && !wasShown) {
-                    setShowOffer(true);
-                    sessionStorage.setItem(STORAGE_KEY, 'shown');
+                const wasLeft = sessionStorage.getItem('temp_left');
+                if (wasLeft) {
+                    triggerOffer();
+                    sessionStorage.removeItem('temp_left');
                 }
             }
         };
 
         // Detecta o botão voltar do navegador
         const handlePopState = () => {
-            const wasShown = sessionStorage.getItem(STORAGE_KEY);
-            if (!wasShown) {
-                setShowOffer(true);
-                sessionStorage.setItem(STORAGE_KEY, 'shown');
-            }
+            triggerOffer();
         };
 
         // Detecta quando a página é mostrada novamente (back/forward cache)
         const handlePageShow = (event: PageTransitionEvent) => {
             if (event.persisted) {
                 // Página foi restaurada do cache (botão voltar)
-                const wasShown = sessionStorage.getItem(STORAGE_KEY);
-                if (!wasShown) {
-                    setShowOffer(true);
-                    sessionStorage.setItem(STORAGE_KEY, 'shown');
-                }
+                triggerOffer();
             }
         };
 
-        window.addEventListener('beforeunload', handleBeforeUnload);
         document.addEventListener('visibilitychange', handleVisibilityChange);
         window.addEventListener('popstate', handlePopState);
         window.addEventListener('pageshow', handlePageShow);
 
         return () => {
-            window.removeEventListener('beforeunload', handleBeforeUnload);
             document.removeEventListener('visibilitychange', handleVisibilityChange);
             window.removeEventListener('popstate', handlePopState);
             window.removeEventListener('pageshow', handlePageShow);
@@ -119,7 +101,7 @@ export const BackRedirectOffer = () => {
             (window as any).fbq('track', 'InitiateCheckout', {
                 content_name: 'Black Shoppe - Oferta Especial Back Redirect',
                 content_category: 'Produto Digital',
-                value: 37.00,
+                value: 35.00,
                 currency: 'BRL'
             });
         }
@@ -223,7 +205,7 @@ export const BackRedirectOffer = () => {
 
                             <p className="text-lg text-white/90 mb-4">
                                 Que bom que você voltou! Ganhamos sua atenção e por isso você ganhou{' '}
-                                <span className="text-green-400 font-black">R$10 DE DESCONTO</span>!
+                                <span className="text-green-400 font-black">R$7 DE DESCONTO</span>!
                             </p>
 
                             {/* Price comparison */}
@@ -231,7 +213,7 @@ export const BackRedirectOffer = () => {
                                 <div className="flex items-center justify-center gap-4">
                                     <div className="text-center">
                                         <p className="text-muted-foreground text-xs uppercase">De</p>
-                                        <p className="text-2xl text-red-400 line-through font-bold">R$ 47</p>
+                                        <p className="text-2xl text-red-400 line-through font-bold">R$ 42</p>
                                     </div>
                                     <motion.div
                                         animate={{ x: [0, 5, 0] }}
@@ -246,8 +228,9 @@ export const BackRedirectOffer = () => {
                                             animate={{ scale: [1, 1.05, 1] }}
                                             transition={{ duration: 1, repeat: 9999 }}
                                         >
-                                            R$ 37
+                                            R$ 35
                                         </motion.p>
+                                        {/* Price updated to 35 */}
                                     </div>
                                 </div>
                             </div>
@@ -307,7 +290,7 @@ export const BackRedirectOffer = () => {
                                     whileTap={{ scale: 0.98 }}
                                 >
                                     <Sparkles className="w-5 h-5" />
-                                    QUERO MEUS R$10 DE DESCONTO
+                                    QUERO MEUS R$7 DE DESCONTO
                                     <motion.span
                                         animate={{ x: [0, 5, 0] }}
                                         transition={{ duration: 0.8, repeat: 9999 }}

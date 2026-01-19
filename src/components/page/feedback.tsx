@@ -606,7 +606,7 @@ const Feedback = () => {
                       (window as any).fbq('track', 'InitiateCheckout', {
                         content_name: 'Black Shoppe - Acesso Completo',
                         content_category: 'Produto Digital',
-                        value: 47.00,
+                        value: 42.00,
                         currency: 'BRL'
                       });
                     }
