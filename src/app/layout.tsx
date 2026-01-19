@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
-import { Poppins } from 'next/font/google';
+import { Poppins, Anton } from 'next/font/google';
 import localFont from 'next/font/local';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
@@ -11,6 +11,15 @@ const poppins = Poppins({
   weight: ['400', '500', '600', '700', '800', '900'],
   display: 'swap',
   variable: '--font-poppins',
+  preload: true,
+});
+
+// Fonte Anton otimizada com next/font
+const anton = Anton({
+  weight: '400',
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-headline',
   preload: true,
 });
 
@@ -47,23 +56,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={`dark ${poppins.variable}`} suppressHydrationWarning>
+    <html lang="pt-BR" className={`dark ${poppins.variable} ${anton.variable}`} suppressHydrationWarning>
       <head>
-        {/* Preconnect para recursos críticos - antes de qualquer outro recurso */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-
         {/* DNS Prefetch para recursos de terceiros (não-críticos) */}
         <link rel="dns-prefetch" href="https://connect.facebook.net" />
         <link rel="dns-prefetch" href="https://cdn.utmify.com.br" />
         <link rel="dns-prefetch" href="https://i.imgur.com" />
         <link rel="dns-prefetch" href="https://api.dicebear.com" />
-
-        {/* Fonte Anton para headlines - com display=swap para não bloquear render */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Anton&display=swap"
-          rel="stylesheet"
-        />
       </head>
       <body className={poppins.className} style={{ fontFamily: 'var(--font-poppins), system-ui, sans-serif' }}>
         {children}

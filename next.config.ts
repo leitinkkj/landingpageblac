@@ -106,11 +106,6 @@ const nextConfig: NextConfig = {
             key: 'Cache-Control',
             value: 'public, max-age=3600, stale-while-revalidate=86400',
           },
-          // Dicas de recursos para o browser
-          {
-            key: 'Link',
-            value: '<https://fonts.googleapis.com>; rel=preconnect, <https://fonts.gstatic.com>; rel=preconnect; crossorigin',
-          },
         ],
       },
     ];
