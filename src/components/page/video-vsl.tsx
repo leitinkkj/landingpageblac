@@ -1,51 +1,32 @@
 "use client";
 
 import { useEffect, useRef, useState } from 'react';
-import { Button } from '../ui/button';
+import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Play, Sparkles } from 'lucide-react';
+import Script from 'next/script';
 
 const VideoVSL = () => {
     const videoContainerRef = useRef<HTMLDivElement>(null);
     const [mounted, setMounted] = useState(false);
+    const [wistiaLoaded, setWistiaLoaded] = useState(false);
 
     useEffect(() => {
         setMounted(true);
     }, []);
 
     useEffect(() => {
-        if (!mounted) return;
+        if (!mounted || !wistiaLoaded) return;
 
-        // Load Wistia scripts dynamically on client side only
-        const loadWistia = () => {
-            // Check if scripts already exist
-            if (!document.querySelector('script[src="https://fast.wistia.com/player.js"]')) {
-                const playerScript = document.createElement('script');
-                playerScript.src = 'https://fast.wistia.com/player.js';
-                playerScript.async = true;
-                document.head.appendChild(playerScript);
-            }
-
-            if (!document.querySelector('script[src="https://fast.wistia.com/embed/zo9v9cgjd7.js"]')) {
-                const embedScript = document.createElement('script');
-                embedScript.src = 'https://fast.wistia.com/embed/zo9v9cgjd7.js';
-                embedScript.async = true;
-                embedScript.type = 'module';
-                document.head.appendChild(embedScript);
-            }
-
-            // Add Wistia player to container
-            if (videoContainerRef.current && !videoContainerRef.current.querySelector('wistia-player')) {
-                const player = document.createElement('wistia-player');
-                player.setAttribute('media-id', 'zo9v9cgjd7');
-                player.setAttribute('aspect', '0.5625');
-                videoContainerRef.current.appendChild(player);
-            }
-        };
-
-        loadWistia();
-    }, [mounted]);
+        // Add Wistia player to container when script is ready
+        if (videoContainerRef.current && !videoContainerRef.current.querySelector('wistia-player')) {
+            const player = document.createElement('wistia-player');
+            player.setAttribute('media-id', 'zo9v9cgjd7');
+            player.setAttribute('aspect', '0.5625');
+            videoContainerRef.current.appendChild(player);
+        }
+    }, [mounted, wistiaLoaded]);
 
     // SSR placeholder to avoid hydration mismatch
     if (!mounted) {
@@ -172,6 +153,21 @@ const VideoVSL = () => {
                     </motion.div>
                 </motion.div>
             </div>
+
+            {/* Carregamento otimizado do Wistia */}
+            <Script
+                src="https://fast.wistia.com/player.js"
+                strategy="lazyOnload"
+                onLoad={() => {
+                    // Script base carregado, agora carrega o embed específico
+                    setWistiaLoaded(true);
+                }}
+            />
+            <Script
+                src="https://fast.wistia.com/embed/zo9v9cgjd7.js"
+                strategy="lazyOnload"
+                type="module"
+            />
         </section>
     );
 };

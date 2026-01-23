@@ -195,8 +195,8 @@ const MainCTA = () => {
                                 </motion.div>
                                 <div>
                                     <p className="text-green-400 font-bold text-lg">Valor total: R$ 2.847,00</p>
-                                    <p className="text-muted-foreground text-sm">Tudo isso por apenas <span className="text-white font-bold">R$ 42</span> (economia de 98%)</p>
-                                    {/* Price updated to 42 */}
+                                    <p className="text-muted-foreground text-sm">Tudo isso por apenas <span className="text-white font-bold">R$ 39,99</span> (economia de 98%)</p>
+                                    {/* Price updated to 39,99 */}
                                 </div>
                             </div>
                         </motion.div>
@@ -287,7 +287,7 @@ const MainCTA = () => {
                                                 }}
                                                 transition={{ duration: 2, repeat: 9999 }}
                                             >
-                                                42
+                                                39,99
                                             </motion.span>
                                         </div>
                                         <motion.div
@@ -308,7 +308,7 @@ const MainCTA = () => {
                                                 (window as any).fbq('track', 'InitiateCheckout', {
                                                     content_name: 'Black Shoppe - Acesso Completo',
                                                     content_category: 'Produto Digital',
-                                                    value: 42.00,
+                                                    value: 39.99,
                                                     currency: 'BRL'
                                                 });
                                             }

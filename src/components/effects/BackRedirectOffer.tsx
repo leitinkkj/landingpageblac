@@ -12,6 +12,32 @@ const CHECKOUT_URL = 'https://www.ggcheckout.com/checkout/v4/3AsfT7M1Zdr6WmhiEHd
 export const BackRedirectOffer = () => {
     const [showOffer, setShowOffer] = useState(false);
     const [countdown, setCountdown] = useState(300); // 5 minutos
+    const [hasReachedCTA, setHasReachedCTA] = useState(false);
+
+    useEffect(() => {
+        // Detecta se o usuário chegou na parte de oferta (CTA)
+        const handleScroll = () => {
+            if (hasReachedCTA) return;
+
+            // Se o usuário rolou mais de 60% da página ou chegou no id 'price-section'
+            const scrolled = window.scrollY;
+            const viewportHeight = window.innerHeight;
+            const fullHeight = document.documentElement.scrollHeight;
+            const priceSection = document.getElementById('price-section');
+
+            if (priceSection) {
+                const rect = priceSection.getBoundingClientRect();
+                if (rect.top < viewportHeight) {
+                    setHasReachedCTA(true);
+                }
+            } else if (scrolled > (fullHeight * 0.6)) {
+                setHasReachedCTA(true);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [hasReachedCTA]);
 
     useEffect(() => {
         // Verifica quando a oferta foi mostrada pela última vez
@@ -25,7 +51,8 @@ export const BackRedirectOffer = () => {
         };
 
         const triggerOffer = () => {
-            if (canShowOffer()) {
+            // SÓ DISPARA SE TIVER CHEGADO NO CTA
+            if (canShowOffer() && hasReachedCTA) {
                 setShowOffer(true);
                 localStorage.setItem(STORAGE_KEY + '_timestamp', Date.now().toString());
             }
@@ -35,7 +62,9 @@ export const BackRedirectOffer = () => {
         const handleVisibilityChange = () => {
             if (document.visibilityState === 'hidden') {
                 // Pessoa saiu da aba - prepara para mostrar quando voltar
-                sessionStorage.setItem('temp_left', 'true');
+                if (hasReachedCTA) {
+                    sessionStorage.setItem('temp_left', 'true');
+                }
             } else if (document.visibilityState === 'visible') {
                 // Pessoa voltou para a aba
                 const wasLeft = sessionStorage.getItem('temp_left');
@@ -68,7 +97,7 @@ export const BackRedirectOffer = () => {
             window.removeEventListener('popstate', handlePopState);
             window.removeEventListener('pageshow', handlePageShow);
         };
-    }, []);
+    }, [hasReachedCTA]);
 
     // Countdown timer
     useEffect(() => {
@@ -101,7 +130,7 @@ export const BackRedirectOffer = () => {
             (window as any).fbq('track', 'InitiateCheckout', {
                 content_name: 'Black Shoppe - Oferta Especial Back Redirect',
                 content_category: 'Produto Digital',
-                value: 35.00,
+                value: 31.99,
                 currency: 'BRL'
             });
         }
@@ -205,7 +234,7 @@ export const BackRedirectOffer = () => {
 
                             <p className="text-lg text-white/90 mb-4">
                                 Que bom que você voltou! Ganhamos sua atenção e por isso você ganhou{' '}
-                                <span className="text-green-400 font-black">R$7 DE DESCONTO</span>!
+                                <span className="text-green-400 font-black">R$8 DE DESCONTO</span>!
                             </p>
 
                             {/* Price comparison */}
@@ -213,7 +242,7 @@ export const BackRedirectOffer = () => {
                                 <div className="flex items-center justify-center gap-4">
                                     <div className="text-center">
                                         <p className="text-muted-foreground text-xs uppercase">De</p>
-                                        <p className="text-2xl text-red-400 line-through font-bold">R$ 42</p>
+                                        <p className="text-2xl text-red-400 line-through font-bold">R$ 39,99</p>
                                     </div>
                                     <motion.div
                                         animate={{ x: [0, 5, 0] }}
@@ -228,9 +257,9 @@ export const BackRedirectOffer = () => {
                                             animate={{ scale: [1, 1.05, 1] }}
                                             transition={{ duration: 1, repeat: 9999 }}
                                         >
-                                            R$ 35
+                                            R$ 31,99
                                         </motion.p>
-                                        {/* Price updated to 35 */}
+                                        {/* Price updated to 31,99 */}
                                     </div>
                                 </div>
                             </div>
@@ -290,7 +319,7 @@ export const BackRedirectOffer = () => {
                                     whileTap={{ scale: 0.98 }}
                                 >
                                     <Sparkles className="w-5 h-5" />
-                                    QUERO MEUS R$7 DE DESCONTO
+                                    QUERO MEUS R$8 DE DESCONTO
                                     <motion.span
                                         animate={{ x: [0, 5, 0] }}
                                         transition={{ duration: 0.8, repeat: 9999 }}

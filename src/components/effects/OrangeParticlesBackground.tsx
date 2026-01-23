@@ -126,6 +126,8 @@ const OrangeParticlesBackground = () => {
 
                 // Mouse - passive para performance
                 const handleMouseMove = (event: MouseEvent) => {
+                    // Throttle mouse movement for performance
+                    if (Math.random() > 0.3) return;
                     mouseRef.current = {
                         x: (event.clientX / window.innerWidth) * 2 - 1,
                         y: -(event.clientY / window.innerHeight) * 2 + 1,
@@ -139,10 +141,12 @@ const OrangeParticlesBackground = () => {
                     clearTimeout(resizeTimeout);
                     resizeTimeout = setTimeout(() => {
                         if (!rendererRef.current) return;
-                        camera.aspect = window.innerWidth / window.innerHeight;
+                        const width = window.innerWidth;
+                        const height = window.innerHeight;
+                        camera.aspect = width / height;
                         camera.updateProjectionMatrix();
-                        rendererRef.current.setSize(window.innerWidth, window.innerHeight);
-                    }, 150);
+                        rendererRef.current.setSize(width, height);
+                    }, 250);
                 };
                 window.addEventListener('resize', handleResize, { passive: true });
 

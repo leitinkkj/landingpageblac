@@ -46,23 +46,28 @@ export const FloatingIcon = ({
 // Animated particles
 export const AnimatedParticles = ({ count = 20 }: { count?: number }) => {
     const [mounted, setMounted] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+        setIsMobile(window.innerWidth < 768);
+    }, []);
 
     // Generate particles only on client side to avoid hydration mismatch
     const particles = useMemo(() => {
         if (!mounted) return [];
-        return Array.from({ length: count }, (_, i) => ({
+        // Reduce particle count on mobile for performance
+        const actualCount = isMobile ? Math.min(count, 10) : count;
+
+        return Array.from({ length: actualCount }, (_, i) => ({
             id: i,
             x: Math.random() * 100,
             y: Math.random() * 100,
-            size: Math.random() * 4 + 2,
-            duration: Math.random() * 10 + 10,
+            size: Math.random() * 3 + 2,
+            duration: Math.random() * 5 + 10,
             delay: Math.random() * 5,
         }));
-    }, [count, mounted]);
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
+    }, [count, mounted, isMobile]);
 
     if (!mounted) return null;
 
@@ -71,23 +76,25 @@ export const AnimatedParticles = ({ count = 20 }: { count?: number }) => {
             {particles.map((particle) => (
                 <motion.div
                     key={particle.id}
-                    className="absolute rounded-full bg-primary/30"
+                    className="absolute rounded-full bg-primary/20"
                     style={{
                         left: `${particle.x}%`,
                         top: `${particle.y}%`,
                         width: particle.size,
                         height: particle.size,
+                        // GPU hint
+                        transform: 'translateZ(0)',
                     }}
                     animate={{
-                        y: [0, -50, 0],
-                        opacity: [0.2, 0.6, 0.2],
-                        scale: [1, 1.5, 1],
+                        translateY: [0, -40, 0],
+                        opacity: [0.1, 0.4, 0.1],
+                        scale: [1, 1.2, 1],
                     }}
                     transition={{
                         duration: particle.duration,
                         delay: particle.delay,
                         repeat: 9999,
-                        ease: "easeInOut",
+                        ease: "linear",
                     }}
                 />
             ))}
