@@ -57,6 +57,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className={`dark ${poppins.variable} ${anton.variable}`} suppressHydrationWarning>
+      {/* Black Shoppe Landing Page v1.2 - Optimized Release */}
       <head>
         {/* DNS Prefetch e Preconnect para recursos críticos */}
         <link rel="preconnect" href="https://connect.facebook.net" crossOrigin="anonymous" />
