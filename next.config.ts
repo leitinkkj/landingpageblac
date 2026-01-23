@@ -114,8 +114,16 @@ const nextConfig: NextConfig = {
   // Experimental: otimizações avançadas
   experimental: {
     optimizeCss: true,
-    // Package imports optimization
-    optimizePackageImports: ['lucide-react', 'framer-motion'],
+    scrollRestoration: true,
+    // Package imports optimization para reduzir bundle size
+    optimizePackageImports: [
+      'lucide-react',
+      'framer-motion',
+      'three',
+      '@radix-ui/react-slot',
+      'clsx',
+      'tailwind-merge'
+    ],
   },
 
 

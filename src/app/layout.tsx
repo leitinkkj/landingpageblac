@@ -57,8 +57,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className={`dark ${poppins.variable} ${anton.variable}`} suppressHydrationWarning>
+      {/* Black Shoppe Landing Page v1.2 - Optimized Release */}
       <head>
-        {/* DNS Prefetch para recursos de terceiros (não-críticos) */}
+        {/* DNS Prefetch e Preconnect para recursos críticos */}
+        <link rel="preconnect" href="https://connect.facebook.net" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://cdn.utmify.com.br" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://i.imgur.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://api.dicebear.com" crossOrigin="anonymous" />
+
         <link rel="dns-prefetch" href="https://connect.facebook.net" />
         <link rel="dns-prefetch" href="https://cdn.utmify.com.br" />
         <link rel="dns-prefetch" href="https://i.imgur.com" />
@@ -68,7 +74,7 @@ export default function RootLayout({
         {children}
         <Toaster />
 
-        {/* Meta Pixel Code - afterInteractive para não bloquear hidratação */}
+        {/* Meta Pixel Code - afterInteractive otimizado */}
         <Script id="meta-pixel" strategy="afterInteractive">
           {`
             !function(f,b,e,v,n,t,s)
@@ -90,12 +96,12 @@ export default function RootLayout({
           />
         </noscript>
 
-        {/* UTMFY Script - lazyOnload para não bloquear nada */}
+        {/* UTMFY Script - afterInteractive para garantir rastreamento de links em SPAs */}
         <Script
           src="https://cdn.utmify.com.br/scripts/utms/latest.js"
           data-utmify-prevent-xcod-sck
           data-utmify-prevent-subids
-          strategy="lazyOnload"
+          strategy="afterInteractive"
         />
       </body>
     </html>
