@@ -39,7 +39,7 @@ export default function NetworkingGroupsPage() {
             Agora, veja todos os grupos de networking disponíveis para você. De todos os nichos que você possa imaginar. Com um simples deslizar, você terá acesso a todos. Não perca tempo e aproveite as oportunidades!
           </p>
           <div className="mt-12 w-full max-w-4xl mx-auto">
-            <Carousel 
+            <Carousel
               opts={{
                 align: "start",
                 loop: true,
@@ -69,12 +69,12 @@ export default function NetworkingGroupsPage() {
               <CarouselNext className="text-white" />
             </Carousel>
           </div>
-           <div className="text-center mt-12 animate-fade-in-up">
-              <Link href="https://www.ggcheckout.com/checkout/v2/rpU6SEztCV3PJcXZTcsm" passHref>
-                   <Button size="lg" className="font-bold text-lg px-10 py-7 rounded-full animate-pulse-glow">
-                      QUERO ACESSO A TODOS OS GRUPOS
-                  </Button>
-              </Link>
+          <div className="text-center mt-12 animate-fade-in-up">
+            <Link href="https://www.ggcheckout.com/checkout/v5/rpU6SEztCV3PJcXZTcsm" passHref>
+              <Button size="lg" className="font-bold text-lg px-10 py-7 rounded-full animate-pulse-glow">
+                QUERO ACESSO A TODOS OS GRUPOS
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
