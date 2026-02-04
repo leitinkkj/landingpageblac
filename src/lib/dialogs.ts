@@ -123,7 +123,7 @@ export const dialogs: Record<string, Dialog> = {
       title: "Compre o acesso!",
       description: "Adquira o acesso vitalício e comece a usar o assistente virtual agora mesmo para otimizar suas buscas.",
       buttonText: "QUERO ACESSO VITALÍCIO",
-      buttonHref: "https://www.ggcheckout.com/checkout/v4/rpU6SEztCV3PJcXZTcsm",
+      buttonHref: "https://www.ggcheckout.com/checkout/v5/rpU6SEztCV3PJcXZTcsm",
     }
   },
   "buscador-promocoes": {
@@ -144,7 +144,7 @@ export const dialogs: Record<string, Dialog> = {
       title: "Encontre as melhores ofertas.",
       description: "Compre o acesso vitalício e use nosso buscador para encontrar preços que a concorrência nem sonha em ter.",
       buttonText: "QUERO ACESSO VITALÍCIO",
-      buttonHref: "https://www.ggcheckout.com/checkout/v4/rpU6SEztCV3PJcXZTcsm",
+      buttonHref: "https://www.ggcheckout.com/checkout/v5/rpU6SEztCV3PJcXZTcsm",
     }
   },
   "metodo-6": {
@@ -165,7 +165,7 @@ export const dialogs: Record<string, Dialog> = {
       title: "Torne-se um fornecedor.",
       description: "Garanta seu acesso e comece hoje mesmo a trilhar o caminho para se tornar um grande fornecedor no seu nicho.",
       buttonText: "QUERO ACESSO VITALÍCIO",
-      buttonHref: "https://www.ggcheckout.com/checkout/v4/rpU6SEztCV3PJcXZTcsm",
+      buttonHref: "https://www.ggcheckout.com/checkout/v5/rpU6SEztCV3PJcXZTcsm",
     }
   },
   "aulas-black": {

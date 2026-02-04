@@ -600,7 +600,7 @@ const Feedback = () => {
               </p>
               <div className="flex flex-col gap-3">
                 <Link
-                  href="https://www.ggcheckout.com/checkout/v4/rpU6SEztCV3PJcXZTcsm"
+                  href="https://www.ggcheckout.com/checkout/v5/rpU6SEztCV3PJcXZTcsm"
                   onClick={() => {
                     if (typeof window !== 'undefined' && (window as any).fbq) {
                       (window as any).fbq('track', 'InitiateCheckout', {
