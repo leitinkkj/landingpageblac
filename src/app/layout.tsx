@@ -64,18 +64,20 @@ export default function RootLayout({
         <link rel="preconnect" href="https://cdn.utmify.com.br" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://i.imgur.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://api.dicebear.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://fast.wistia.com" crossOrigin="anonymous" />
 
         <link rel="dns-prefetch" href="https://connect.facebook.net" />
         <link rel="dns-prefetch" href="https://cdn.utmify.com.br" />
         <link rel="dns-prefetch" href="https://i.imgur.com" />
         <link rel="dns-prefetch" href="https://api.dicebear.com" />
+        <link rel="dns-prefetch" href="https://fast.wistia.com" />
       </head>
       <body className={poppins.className} style={{ fontFamily: 'var(--font-poppins), system-ui, sans-serif' }}>
         {children}
         <Toaster />
 
-        {/* Meta Pixel Code - afterInteractive otimizado */}
-        <Script id="meta-pixel" strategy="afterInteractive">
+        {/* Meta Pixel Code - lazyOnload para não bloquear renderização, mantendo rastreamento */}
+        <Script id="meta-pixel" strategy="lazyOnload">
           {`
             !function(f,b,e,v,n,t,s)
             {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -96,12 +98,12 @@ export default function RootLayout({
           />
         </noscript>
 
-        {/* UTMFY Script - afterInteractive para garantir rastreamento de links em SPAs */}
+        {/* UTMFY Script - lazyOnload para não bloquear FCP/LCP, mantendo rastreamento de UTMs */}
         <Script
           src="https://cdn.utmify.com.br/scripts/utms/latest.js"
           data-utmify-prevent-xcod-sck
           data-utmify-prevent-subids
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
       </body>
     </html>
