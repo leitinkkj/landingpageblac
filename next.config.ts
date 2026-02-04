@@ -121,10 +121,17 @@ const nextConfig: NextConfig = {
       'framer-motion',
       'three',
       '@radix-ui/react-slot',
+      '@radix-ui/react-dialog',
+      '@radix-ui/react-accordion',
       'clsx',
-      'tailwind-merge'
+      'tailwind-merge',
+      'recharts',
+      'date-fns',
     ],
   },
+
+  // Bundle pages router dependencies para menor bundle
+  bundlePagesRouterDependencies: true,
 
 
 

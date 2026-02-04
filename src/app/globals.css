@@ -76,19 +76,28 @@
     font-family: var(--font-body);
   }
 
-  /* Removido content-visibility: auto pois estava causando instabilidade no scroll (jumping) */
+  /* Performance: sections com contain para otimizar layout */
   section {
     position: relative;
     width: 100%;
     overflow: hidden;
+    contain: layout style;
   }
 
-  /* Performance: imagens com lazy loading nativo */
+  /* Performance: imagens com lazy loading nativo e contain */
   img {
     content-visibility: auto;
+    contain-intrinsic-size: 300px 200px;
     /* Prevenir layout shift */
     height: auto;
     max-width: 100%;
+  }
+
+  /* Performance: vídeos e iframes com loading lazy */
+  video,
+  iframe {
+    content-visibility: auto;
+    contain-intrinsic-size: 16px / 9px;
   }
 
   /* Performance: GPU acceleration para elementos animados */
